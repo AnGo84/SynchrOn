@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="291.0" prefWidth="557.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.synchron.controller.SettingsController">
+    <children>
+        <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <center>
+                <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+                    <tabs>
+                        <Tab text="General">
+                            <content>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                    <children>
+                                        <GridPane prefHeight="227.0" prefWidth="557.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                            <children>
+                                                <Label text="XML file path" GridPane.rowIndex="1" />
+                                                <Label text="User name" />
+
+                                                <Button fx:id="buttonChooseXML" mnemonicParsing="false" onAction="#onButtonChooseXML" prefHeight="25.0" prefWidth="30.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                    <GridPane.margin>
+                                                        <Insets left="5.0" />
+                                                    </GridPane.margin>
+                                                </Button>
+                                                <TextField fx:id="textFUserName" promptText="User name which..." GridPane.columnIndex="1" />
+                                                <TextField fx:id="textFXMLFile" promptText="Path to file with Google Doc data" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                            </children>
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="30.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                        </GridPane>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Google">
+                            <content>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                    <children>
+                                        <GridPane prefHeight="227.0" prefWidth="557.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                            <children>
+                                                <Label text="Project name" />
+                                                <Label text="JSON file" GridPane.rowIndex="1" />
+                                                <TextField fx:id="textFProjectName" promptText="Google API project name" GridPane.columnIndex="1" />
+                                                <TextField fx:id="textFJsonFile" promptText="Path to file with Google API settings" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <Button fx:id="buttonChooseJson" mnemonicParsing="false" onAction="#onButtonChooseJson" prefHeight="25.0" prefWidth="30.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                    <GridPane.margin>
+                                                        <Insets left="5.0" />
+                                                    </GridPane.margin>
+                                                </Button>
+                                                <Button fx:id="buttonTest" mnemonicParsing="false" onAction="#onButtonTest" prefHeight="25.0" prefWidth="80.0" text="Test" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                    <GridPane.margin>
+                                                        <Insets />
+                                                    </GridPane.margin>
+                                                </Button>
+                                            </children>
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="30.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                        </GridPane>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Synchronization">
+                            <content>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                    <children>
+                                        <GridPane prefHeight="227.0" prefWidth="557.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                            <children>
+                                                <Label text="Delay after start" GridPane.rowIndex="0" />
+                                                <TextField fx:id="textFDelayAfterStart" promptText="" GridPane.columnIndex="1" />
+                                                <Label text="sec" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                                    <GridPane.margin>
+                                                        <Insets left="5.0" />
+                                                    </GridPane.margin>
+                                                </Label>
+
+                                                <Label text="Repeat every" GridPane.rowIndex="1" />
+                                                <TextField fx:id="textFRepeatPeriod" promptText="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <Label text="sec( to turn off set 0)" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                    <GridPane.margin>
+                                                        <Insets left="5.0" />
+                                                    </GridPane.margin>
+                                                </Label>
+
+                                                <Label text="After change need restart application" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+
+                                            </children>
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="90.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="50.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                        </GridPane>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </center>
+            <bottom>
+                <AnchorPane prefHeight="30.0" prefWidth="557.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <HBox spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+                            <children>
+                                <Button fx:id="buttonOk" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onButtonOk" prefHeight="25.0" prefWidth="90.0" text="Ok" />
+                                <Button fx:id="buttonCancel" layoutX="60.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onButtonCancel" prefHeight="25.0" prefWidth="90.0" text="Cancel" />
+                            </children>
+                        </HBox>
+                    </children>
+                </AnchorPane>
+            </bottom>
+
+        </BorderPane>
+    </children>
+</AnchorPane>
