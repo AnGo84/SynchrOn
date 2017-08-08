@@ -184,6 +184,7 @@ public class MainApp extends Application {
 
             primaryStage.getIcons().add(ImageResources.getAppIcon());
 
+
             primaryStage.setScene(scene);
 
             primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {

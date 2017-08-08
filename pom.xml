@@ -86,7 +86,7 @@
 
 
     <build>
-        <finalName>synchron</finalName>
+        <finalName>SynchrOn</finalName>
         <plugins>
             <plugin>
                 <groupId>com.zenjava</groupId>
