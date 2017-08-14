@@ -7,7 +7,8 @@ import javafx.scene.image.Image;
  * Created by AnGo on 20.06.2017.
  */
 public class ImageResources {
-    private static Image appIcon = new Image(MainApp.class.getResourceAsStream("/images/tableSync_32.png"));
+//    private static Image appIcon = new Image(MainApp.class.getResourceAsStream("/images/tableSync_32.png"));
+    private static Image appIcon = new Image(MainApp.class.getResourceAsStream("/images/SynchrOn_32.png"));
 
     private static Image buttonFirst = new Image(MainApp.class.getResourceAsStream("/images/button/first_16.png"));
     private static Image buttonPrior = new Image(MainApp.class.getResourceAsStream("/images/button/prior_16.png"));
