@@ -95,7 +95,7 @@ public class MainApp extends Application {
     public static void main(String[] args) {
         rootLogger.info("Start");
         if (DateUtil.isEndTrial(new Date())) {
-            rootLogger.info("Trial period ended!!!");
+            rootLogger.info("Trial period ended");
 
         } else {
             launch(args);
@@ -234,7 +234,7 @@ public class MainApp extends Application {
             GoogleDocController controller = loader.getController();
             controller.setMainApp(this);
         } catch (IOException e) {
-            Dialogs.showErrorDialog(e, new DialogText("Form show error", "", "Can't open DocView form!"), rootLogger);
+            Dialogs.showErrorDialog(e, new DialogText("Form show error", "", "Can't open DocView form"), rootLogger);
         }
     }
 
@@ -261,7 +261,7 @@ public class MainApp extends Application {
 
         } catch (IOException e) {
             //e.printStackTrace();
-            Dialogs.showErrorDialog(e, new DialogText("Form show error", "", "Can't open Settings form!"), rootLogger);
+            Dialogs.showErrorDialog(e, new DialogText("Form show error", "", "Can't open Settings form"), rootLogger);
         }
     }
 
