@@ -3,6 +3,7 @@ package com.synchron;/**
  */
 
 import com.google.api.services.sheets.v4.Sheets;
+import com.synchron.awt.SystemTray;
 import com.synchron.controller.*;
 import com.synchron.custom.DateUtil;
 import com.synchron.custom.FileUtils;
@@ -19,6 +20,7 @@ import com.synchron.model.GoogleDoc;
 import com.synchron.properties.PreferencesHandler;
 import com.synchron.properties.PropertiesHandler;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -27,6 +29,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -34,9 +37,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.xml.bind.JAXBException;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.List;
 
 public class MainApp extends Application {
     private static final String APP_NAME = "SynchrOn App";
@@ -50,6 +55,8 @@ public class MainApp extends Application {
     private BorderPane rootLayout;
     private ObservableList<GoogleDoc> googleDocList = FXCollections.observableArrayList();
     private GoogleDoc currentGoogleDoc = null;
+
+    private SystemTray systemTray;
     private Timer timer = new Timer(true);
     private TimerTask timeTask = new TimerTask() {
 
@@ -84,8 +91,8 @@ public class MainApp extends Application {
         return tableEdited;
     }
 
-    public static void setTableEdited(boolean tableEdited) {
-        MainApp.tableEdited = tableEdited;
+    public void setTableEdited(boolean tableEdited) {
+        this.tableEdited = tableEdited;
     }
 
     public static String getAppName() {
@@ -102,6 +109,10 @@ public class MainApp extends Application {
         }
 
         rootLogger.info("Close");
+    }
+
+    public SystemTray getSystemTray() {
+        return systemTray;
     }
 
     public Stage getPrimaryStage() {
@@ -137,12 +148,14 @@ public class MainApp extends Application {
             rootLogger.info("Sync start " + timerNowDate + " :");
             for (GoogleDoc googleDoc : googleDocs) {
                 if (!googleDoc.getName().equals("") && googleDoc.getExportType() != null && !GoogleDocExport.getExportDirectory(googleDoc).equals("")) {
-                    setTableEdited(true);
                     try {
                         GoogleDocExport.exportGoogleDocToFile(getService(), ExportType.valueOf(googleDoc.getExportType()), GoogleDocExport.fileNameWithoutType(googleDoc.getExportDir(), googleDoc.getName()), googleDoc);
+                        setTableEdited(true);
+                        systemTray.showTrayMessage(APP_NAME, "Sync '" + googleDoc.getName() + "' success", TrayIcon.MessageType.INFO);
                         rootLogger.info("Sync " + googleDoc.toShortString() + " success");
                     } catch (IOException | ArithmeticException e) {
                         GoogleDocExport.setExportResults(googleDoc, ExportResult.FAIL);
+                        systemTray.showTrayMessage(APP_NAME, "Sync '" + googleDoc.getName() + "' error", TrayIcon.MessageType.ERROR);
                         rootLogger.error("Error on  sync " + googleDoc.toShortString() + " with message: " + e.getMessage());
                     }
                 }
@@ -168,6 +181,23 @@ public class MainApp extends Application {
 
         this.primaryStage.setTitle(APP_NAME);
 
+
+        // instructs the javafx system not to exit implicitly when the last application window is shut.
+        Platform.setImplicitExit(false);
+
+        // sets up the tray icon (using awt code run on the swing thread).
+        systemTray = new SystemTray(primaryStage, this);
+//        javax.swing.SwingUtilities.invokeLater(this:: systemTray.addAppToTray);
+        javax.swing.SwingUtilities.invokeLater(
+                new Runnable() {
+
+                    public void run() {
+                        systemTray.addAppToTray();
+                    }
+                }
+        );
+
+
         initRootLayout();
 
         showGoogleDocView();
@@ -184,17 +214,17 @@ public class MainApp extends Application {
 
             primaryStage.getIcons().add(ImageResources.getAppIcon());
 
-
             primaryStage.setScene(scene);
 
-            primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent event) {
-                    if (!shutDown()) {
-                        event.consume();
-                    }
-                }
-            });
+//            // request on exit
+//            primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+//                @Override
+//                public void handle(WindowEvent event) {
+//                    if (!shutDown()) {
+//                        event.consume();
+//                    }
+//                }
+//            });
 
             // Даём контроллеру доступ к главному прилодению.
             RootLayoutController controller = loader.getController();
@@ -298,6 +328,7 @@ public class MainApp extends Application {
         }
     }
 
+
     public void showTabSheetDialog(DocSheet docSheet) {
         try {
 
@@ -373,6 +404,7 @@ public class MainApp extends Application {
         if (addName != null && !addName.equals("")) {
             addName = " - " + addName;
         } else addName = "";
+
         primaryStage.setTitle(APP_NAME + addName);
     }
 
@@ -413,5 +445,52 @@ public class MainApp extends Application {
             }
         }
         return googleDocs;
+    }
+
+    public void saveMainTable(){
+        //        File file = PreferencesHandler.getPreferenceFilePath(mainApp.getClass(), PreferencesHandler.LAST_FILE_PATH);
+        File file = new File(PropertiesHandler.getPropertyString(getProperties(), PropertiesHandler.APP_XML_FILE));
+        if (file != null) {
+            try {
+                XMLIOHandler.writeGoogleDocsToXMLFile(file, getGoogleDocList());
+                setTableEdited(false);
+                Dialogs.showMessage(Alert.AlertType.INFORMATION, new DialogText("Saving file", "File '" + file.getAbsolutePath() + "' saved successful", ""), getRootLogger());
+            } catch (JAXBException e) {
+                Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Saving error", "Error on saving file " + file.getAbsoluteFile(), e.getMessage()), getRootLogger());
+            }
+        } else {
+            handleSaveAs();
+        }
+    }
+
+    public void handleSaveAs(){
+        if (!isEmptyDocList()) {
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
+            File file = Dialogs.saveFileDialog(PreferencesHandler.getPreferenceFilePath(this.getClass(), PreferencesHandler.LAST_FILE_PATH), extFilter, getPrimaryStage());
+            if (file != null) {
+                // Make sure it has the correct extension
+                if (!file.getPath().endsWith(".xml")) {
+                    file = new File(file.getPath() + ".xml");
+                }
+
+                if (PreferencesHandler.getPreferenceFilePath(this.getClass(), PreferencesHandler.LAST_FILE_PATH) == null) {
+                    PreferencesHandler.setPreferenceFilePath(file, this.getClass(), PreferencesHandler.LAST_FILE_PATH);
+                    setMainAppTitle(file.getName());
+                }
+                getRootLogger().info("Export to XML file '" + file.getParent() + "'");
+                try {
+                    XMLIOHandler.writeGoogleDocsToXMLFile(file, getGoogleDocList());
+                    setTableEdited(false);
+                    Dialogs.showMessage(Alert.AlertType.INFORMATION, new DialogText("Saving file", "File '" + file.getAbsolutePath() + "' saved successful", ""), getRootLogger());
+                } catch (JAXBException e) {
+                    Dialogs.showErrorDialog(e, new DialogText("Saving error", "Error on saving file " + file.getAbsoluteFile(), ""), getRootLogger());
+//                    Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Saving error", "Error on saving file " + file.getAbsoluteFile(), e.getMessage()), mainApp.getRootLogger());
+                }
+            } else {
+                Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Warning!", "Cannot save file '" + file + "'", "The wrong path or file not exist"), null);
+            }
+        } else {
+            Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Data error", "Nothing to save!", "Table is empty"), getRootLogger());
+        }
     }
 }

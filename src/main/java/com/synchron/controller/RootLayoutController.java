@@ -35,6 +35,7 @@ public class RootLayoutController {
     public void onMenuItemNew(ActionEvent actionEvent) {
         mainApp.getGoogleDocList().clear();
         PreferencesHandler.setPreferenceFilePath(null, mainApp.getClass(), PreferencesHandler.LAST_FILE_PATH);
+        mainApp.setTableEdited(false);
         mainApp.setMainAppTitle(null);
     }
 
@@ -51,53 +52,56 @@ public class RootLayoutController {
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
         file = Dialogs.openFileDialog(file, extFilter, mainApp.getPrimaryStage());
         mainApp.loadGoogleDocsFromFile(file);
+
     }
 
     private void handleSaveAs() {
-        if (!mainApp.isEmptyDocList()) {
-            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
-            File file = Dialogs.saveFileDialog(PreferencesHandler.getPreferenceFilePath(mainApp.getClass(), PreferencesHandler.LAST_FILE_PATH), extFilter, mainApp.getPrimaryStage());
-            if (file != null) {
-                // Make sure it has the correct extension
-                if (!file.getPath().endsWith(".xml")) {
-                    file = new File(file.getPath() + ".xml");
-                }
-
-                if (PreferencesHandler.getPreferenceFilePath(mainApp.getClass(), PreferencesHandler.LAST_FILE_PATH) == null) {
-                    PreferencesHandler.setPreferenceFilePath(file, mainApp.getClass(), PreferencesHandler.LAST_FILE_PATH);
-                    mainApp.setMainAppTitle(file.getName());
-                }
-                mainApp.getRootLogger().info("Export to XML file '" + file.getParent() + "'");
-                try {
-                    XMLIOHandler.writeGoogleDocsToXMLFile(file, mainApp.getGoogleDocList());
-                    mainApp.setTableEdited(false);
-                    Dialogs.showMessage(Alert.AlertType.INFORMATION, new DialogText("Saving file", "File '" + file.getAbsolutePath() + "' saved successful", ""), mainApp.getRootLogger());
-                } catch (JAXBException e) {
-                    Dialogs.showErrorDialog(e, new DialogText("Saving error", "Error on saving file " + file.getAbsoluteFile(), ""), mainApp.getRootLogger());
-//                    Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Saving error", "Error on saving file " + file.getAbsoluteFile(), e.getMessage()), mainApp.getRootLogger());
-                }
-            } else {
-                Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Warning!", "Cannot save file '" + file + "'", "The wrong path or file not exist"), null);
-            }
-        } else {
-            Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Data error", "Nothing to save!", "Table is empty"), mainApp.getRootLogger());
-        }
+        mainApp.handleSaveAs();
+//        if (!mainApp.isEmptyDocList()) {
+//            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
+//            File file = Dialogs.saveFileDialog(PreferencesHandler.getPreferenceFilePath(mainApp.getClass(), PreferencesHandler.LAST_FILE_PATH), extFilter, mainApp.getPrimaryStage());
+//            if (file != null) {
+//                // Make sure it has the correct extension
+//                if (!file.getPath().endsWith(".xml")) {
+//                    file = new File(file.getPath() + ".xml");
+//                }
+//
+//                if (PreferencesHandler.getPreferenceFilePath(mainApp.getClass(), PreferencesHandler.LAST_FILE_PATH) == null) {
+//                    PreferencesHandler.setPreferenceFilePath(file, mainApp.getClass(), PreferencesHandler.LAST_FILE_PATH);
+//                    mainApp.setMainAppTitle(file.getName());
+//                }
+//                mainApp.getRootLogger().info("Export to XML file '" + file.getParent() + "'");
+//                try {
+//                    XMLIOHandler.writeGoogleDocsToXMLFile(file, mainApp.getGoogleDocList());
+//                    mainApp.setTableEdited(false);
+//                    Dialogs.showMessage(Alert.AlertType.INFORMATION, new DialogText("Saving file", "File '" + file.getAbsolutePath() + "' saved successful", ""), mainApp.getRootLogger());
+//                } catch (JAXBException e) {
+//                    Dialogs.showErrorDialog(e, new DialogText("Saving error", "Error on saving file " + file.getAbsoluteFile(), ""), mainApp.getRootLogger());
+////                    Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Saving error", "Error on saving file " + file.getAbsoluteFile(), e.getMessage()), mainApp.getRootLogger());
+//                }
+//            } else {
+//                Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Warning!", "Cannot save file '" + file + "'", "The wrong path or file not exist"), null);
+//            }
+//        } else {
+//            Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Data error", "Nothing to save!", "Table is empty"), mainApp.getRootLogger());
+//        }
     }
 
     public void onMenuItemSave(ActionEvent actionEvent) {
-//        File file = PreferencesHandler.getPreferenceFilePath(mainApp.getClass(), PreferencesHandler.LAST_FILE_PATH);
-        File file = new File(PropertiesHandler.getPropertyString(mainApp.getProperties(), PropertiesHandler.APP_XML_FILE));
-        if (file != null) {
-            try {
-                XMLIOHandler.writeGoogleDocsToXMLFile(file, mainApp.getGoogleDocList());
-                mainApp.setTableEdited(false);
-                Dialogs.showMessage(Alert.AlertType.INFORMATION, new DialogText("Saving file", "File '" + file.getAbsolutePath() + "' saved successful", ""), mainApp.getRootLogger());
-            } catch (JAXBException e) {
-                Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Saving error", "Error on saving file " + file.getAbsoluteFile(), e.getMessage()), mainApp.getRootLogger());
-            }
-        } else {
-            handleSaveAs();
-        }
+        mainApp.saveMainTable();
+////        File file = PreferencesHandler.getPreferenceFilePath(mainApp.getClass(), PreferencesHandler.LAST_FILE_PATH);
+//        File file = new File(PropertiesHandler.getPropertyString(mainApp.getProperties(), PropertiesHandler.APP_XML_FILE));
+//        if (file != null) {
+//            try {
+//                XMLIOHandler.writeGoogleDocsToXMLFile(file, mainApp.getGoogleDocList());
+//                mainApp.setTableEdited(false);
+//                Dialogs.showMessage(Alert.AlertType.INFORMATION, new DialogText("Saving file", "File '" + file.getAbsolutePath() + "' saved successful", ""), mainApp.getRootLogger());
+//            } catch (JAXBException e) {
+//                Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Saving error", "Error on saving file " + file.getAbsoluteFile(), e.getMessage()), mainApp.getRootLogger());
+//            }
+//        } else {
+//            handleSaveAs();
+//        }
     }
 
     public void onMenuItemSaveAs(ActionEvent actionEvent) {

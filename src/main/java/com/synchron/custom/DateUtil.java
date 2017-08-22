@@ -19,7 +19,7 @@ public class DateUtil {
     //    private static final String DATE_PATTERN = "dd.MM.yyyy hh:mm:ss";
     //"(0[1-9]|1[012])[/](0[1-9]|[12][0-9]|3[01])[/](19|20)\d\d ([0-9]|1[0-1]):[0-5][0-9](:[0-5][0-9])? ?[APap][mM]$"
     private static final String DATE_PATTERN = "MM/dd/yyyy K:mm:ss a";
-    private static final String DATE_END_TRIAL = "09/01/2017";
+    private static final String DATE_END_TRIAL = "10/01/2017";
     private static final DateTimeFormatter DATE_FORMATTER =
             DateTimeFormatter.ofPattern(DATE_PATTERN);
 

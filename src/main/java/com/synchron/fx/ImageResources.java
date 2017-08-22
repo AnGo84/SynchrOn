@@ -3,12 +3,19 @@ package com.synchron.fx;
 import com.synchron.MainApp;
 import javafx.scene.image.Image;
 
+
 /**
  * Created by AnGo on 20.06.2017.
  */
 public class ImageResources {
-//    private static Image appIcon = new Image(MainApp.class.getResourceAsStream("/images/tableSync_32.png"));
+
+
+    private static String appIconPath = MainApp.class.getResource("/images/SynchrOn_16.png").getPath();
+
+
+    //private static Image appIcon = new Image(MainApp.class.getResourceAsStream("/images/tableSync_32.png"));
     private static Image appIcon = new Image(MainApp.class.getResourceAsStream("/images/SynchrOn_32.png"));
+    //private static Image appIcon = new Image( appIconPath);
 
     private static Image buttonFirst = new Image(MainApp.class.getResourceAsStream("/images/button/first_16.png"));
     private static Image buttonPrior = new Image(MainApp.class.getResourceAsStream("/images/button/prior_16.png"));
@@ -32,6 +39,9 @@ public class ImageResources {
 
     private static Image buttonTest = new Image(MainApp.class.getResourceAsStream("/images/button/antenna.png"));
 
+    public static String getAppIconPath() {
+        return appIconPath;
+    }
 
     public static Image getAppIcon() {
         return appIcon;
