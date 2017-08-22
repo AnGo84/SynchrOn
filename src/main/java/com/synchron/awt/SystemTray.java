@@ -24,6 +24,7 @@ public class SystemTray {
     private Stage stage;
     private java.awt.SystemTray tray = java.awt.SystemTray.getSystemTray();
     private java.awt.TrayIcon trayIcon;
+
     private MainApp mainApp;
 
     public SystemTray(Stage stage, MainApp mainApp) {
@@ -37,39 +38,39 @@ public class SystemTray {
     public void addAppToTray() throws AWTException, IOException {
         //try {
 
-            // ensure awt toolkit is initialized.
-            java.awt.Toolkit.getDefaultToolkit();
+        // ensure awt toolkit is initialized.
+        java.awt.Toolkit.getDefaultToolkit();
 
-            // app requires system tray support, just exit if there is no support.
-            if (!java.awt.SystemTray.isSupported()) {
-                Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Application error", "Error with system", "No system tray support, application exiting."), null);
-                System.out.println("No system tray support, application exiting.");
-                Platform.exit();
-            }
+        // app requires system tray support, just exit if there is no support.
+        if (!java.awt.SystemTray.isSupported()) {
+            //Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Application error", "Error with system", "No system tray support, application exiting."), null);
 
-            // set up a system tray icon.
+            mainApp.getRootLogger().info("No system tray support, application exiting.");
+            //System.out.println("No system tray support, application exiting.");
+            Platform.exit();
+        }
 
-            java.awt.Image image = ImageIO.read(new File(ImageResources.getAppIconPath()));
+        // set up a system tray icon.
+        //mainApp.getRootLogger().info("Tray icon: "+ImageResources.getTrayImageUrl().getPath());
+        trayIcon = new TrayIcon(Toolkit.getDefaultToolkit().createImage(ImageResources.getTrayImageUrl()));
 //            java.awt.TrayIcon trayIcon = new java.awt.TrayIcon(image);
-            trayIcon = new java.awt.TrayIcon(image);
 
-            // if the user double-clicks on the tray icon, show the main app stage.
-            trayIcon.addActionListener(event -> Platform.runLater(this::showStage));
+        // if the user double-clicks on the tray icon, show the main app stage.
+        trayIcon.addActionListener(event -> Platform.runLater(this::showStage));
 
-            setUpTrayIconPopupMenu();
+        setUpTrayIconPopupMenu();
 
-            trayIcon.setPopupMenu(popup);
+        trayIcon.setPopupMenu(popup);
 
 
-            // add the application tray icon to the system tray.
-            tray.add(trayIcon);
+        // add the application tray icon to the system tray.
+        tray.add(trayIcon);
 
 //        } catch (java.awt.AWTException | IOException e) {
 ////        } catch (java.awt.AWTException e) {
 //            System.out.println("Unable to init system tray");
 //            e.printStackTrace();
 //        }
-       // }
     }
 
     private void setUpTrayIconPopupMenu() {
@@ -103,7 +104,7 @@ public class SystemTray {
         popup.add(exitItem);
     }
 
-    private void onExitAction() {
+    public void onExitAction() {
         Platform.exit();
         tray.remove(trayIcon);
     }
@@ -127,7 +128,7 @@ public class SystemTray {
 
 
     /**
-     * Shows the application stage and ensures that it is brought ot the front of all stages.
+     * Shows the application save dialog and close application.
      */
     private void mainAppSave() {
         if (mainApp != null) {

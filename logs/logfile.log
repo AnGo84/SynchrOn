@@ -324,3 +324,118 @@ USER_NAME :
 }
 2017-08-22 21:18:34,298 INFO  [JavaFX Application Thread] Open file: 'D:\tempJava\TempXLS.xml'
 2017-08-22 21:18:44,832 INFO  [main] Close
+2017-08-22 21:54:54,158 INFO  [main] Start
+2017-08-22 21:54:54,553 INFO  [JavaFX Application Thread] Properties{
+DELAY_AFTER_START : 30
+APP_XML_FILE : D:\tempJava\TempXLS.xml
+GOOGLE_PROJECT_NAME : Employees
+GOOGLE_PROJECT_JSON : P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json
+REPEAT_PERIOD : 30
+USER_NAME : 
+}
+2017-08-22 21:54:55,554 INFO  [JavaFX Application Thread] Open file: 'D:\tempJava\TempXLS.xml'
+2017-08-22 21:55:25,597 INFO  [Timer-0] Sync start Tue Aug 22 21:55:25 EEST 2017 :
+2017-08-22 21:55:25,600 INFO  [Timer-0] Sync with: 
+GoogleAPIProject{userName='', projectName='Employees', pathToJson='P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json'}
+2017-08-22 21:55:27,345 INFO  [Timer-0] Sync GoogleDoc{name=StringProperty [value: Employee], exportDir=StringProperty [value: D:\tempJava], status=StringProperty [value: On], exportType=StringProperty [value: CSV], period=IntegerProperty [value: 5], nextSyncDate=ObjectProperty [value: 2017-08-22T21:59], lastSyncDate=ObjectProperty [value: 2017-08-22T21:55:27.343], exportResult=StringProperty [value: SUCCESS], docId=StringProperty [value: 1QgSCimAbg90mW4YJqAhr1ms0CAT1wI3pZqHPoiBqUDQ]} success
+2017-08-22 21:55:32,125 INFO  [main] Close
+2017-08-22 22:02:24,089 INFO  [main] Start
+2017-08-22 22:02:24,357 INFO  [JavaFX Application Thread] Properties{
+DELAY_AFTER_START : 30
+APP_XML_FILE : D:\tempJava\TempXLS.xml
+GOOGLE_PROJECT_NAME : Employees
+GOOGLE_PROJECT_JSON : P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json
+REPEAT_PERIOD : 30
+USER_NAME : 
+}
+2017-08-22 22:02:26,873 INFO  [JavaFX Application Thread] Open file: 'D:\tempJava\TempXLS.xml'
+2017-08-22 22:03:01,997 INFO  [main] Start
+2017-08-22 22:03:02,248 INFO  [JavaFX Application Thread] Properties{
+DELAY_AFTER_START : 30
+APP_XML_FILE : D:\tempJava\TempXLS.xml
+GOOGLE_PROJECT_NAME : Employees
+GOOGLE_PROJECT_JSON : P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json
+REPEAT_PERIOD : 30
+USER_NAME : 
+}
+2017-08-22 22:03:05,056 INFO  [JavaFX Application Thread] Open file: 'D:\tempJava\TempXLS.xml'
+2017-08-22 22:03:35,087 INFO  [Timer-0] Sync start Tue Aug 22 22:03:35 EEST 2017 :
+2017-08-22 22:03:35,089 INFO  [Timer-0] Sync with: 
+GoogleAPIProject{userName='', projectName='Employees', pathToJson='P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json'}
+2017-08-22 22:03:36,938 INFO  [Timer-0] Sync GoogleDoc{name=StringProperty [value: Employee], exportDir=StringProperty [value: D:\tempJava], status=StringProperty [value: On], exportType=StringProperty [value: CSV], period=IntegerProperty [value: 5], nextSyncDate=ObjectProperty [value: 2017-08-22T22:04], lastSyncDate=ObjectProperty [value: 2017-08-22T22:03:36.937], exportResult=StringProperty [value: SUCCESS], docId=StringProperty [value: 1QgSCimAbg90mW4YJqAhr1ms0CAT1wI3pZqHPoiBqUDQ]} success
+2017-08-22 22:04:05,057 INFO  [Timer-0] Sync start Tue Aug 22 22:04:05 EEST 2017 :
+2017-08-22 22:04:05,057 INFO  [Timer-0] Sync with: 
+GoogleAPIProject{userName='', projectName='Employees', pathToJson='P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json'}
+2017-08-22 22:04:06,242 INFO  [Timer-0] Sync GoogleDoc{name=StringProperty [value: Employee], exportDir=StringProperty [value: D:\tempJava], status=StringProperty [value: On], exportType=StringProperty [value: CSV], period=IntegerProperty [value: 5], nextSyncDate=ObjectProperty [value: 2017-08-22T22:09], lastSyncDate=ObjectProperty [value: 2017-08-22T22:04:06.241], exportResult=StringProperty [value: SUCCESS], docId=StringProperty [value: 1QgSCimAbg90mW4YJqAhr1ms0CAT1wI3pZqHPoiBqUDQ]} success
+2017-08-22 22:05:36,226 INFO  [main] Start
+2017-08-22 22:05:36,504 INFO  [JavaFX Application Thread] Properties{
+DELAY_AFTER_START : 30
+APP_XML_FILE : D:\tempJava\TempXLS.xml
+GOOGLE_PROJECT_NAME : Employees
+GOOGLE_PROJECT_JSON : P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json
+REPEAT_PERIOD : 30
+USER_NAME : 
+}
+2017-08-22 22:05:39,524 INFO  [JavaFX Application Thread] Open file: 'D:\tempJava\TempXLS.xml'
+2017-08-22 22:05:42,678 INFO  [main] Close
+2017-08-22 23:02:36,189 INFO  [main] Start
+2017-08-22 23:02:36,667 INFO  [JavaFX Application Thread] Properties{
+DELAY_AFTER_START : 30
+APP_XML_FILE : D:\tempJava\TempXLS.xml
+GOOGLE_PROJECT_NAME : Employees
+GOOGLE_PROJECT_JSON : P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json
+REPEAT_PERIOD : 30
+USER_NAME : 
+}
+2017-08-22 23:02:38,236 INFO  [JavaFX Application Thread] Open file: 'D:\tempJava\TempXLS.xml'
+2017-08-22 23:03:08,270 INFO  [Timer-0] Sync start Tue Aug 22 23:03:08 EEST 2017 :
+2017-08-22 23:03:08,272 INFO  [Timer-0] Sync with: 
+GoogleAPIProject{userName='', projectName='Employees', pathToJson='P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json'}
+2017-08-22 23:03:11,184 INFO  [Timer-0] Sync GoogleDoc{name=StringProperty [value: Employee], exportDir=StringProperty [value: D:\tempJava], status=StringProperty [value: On], exportType=StringProperty [value: CSV], period=IntegerProperty [value: 5], nextSyncDate=ObjectProperty [value: 2017-08-22T23:04], lastSyncDate=ObjectProperty [value: 2017-08-22T23:03:11.182], exportResult=StringProperty [value: SUCCESS], docId=StringProperty [value: 1QgSCimAbg90mW4YJqAhr1ms0CAT1wI3pZqHPoiBqUDQ]} success
+2017-08-22 23:04:08,236 INFO  [Timer-0] Sync start Tue Aug 22 23:04:08 EEST 2017 :
+2017-08-22 23:04:08,237 INFO  [Timer-0] Sync with: 
+GoogleAPIProject{userName='', projectName='Employees', pathToJson='P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json'}
+2017-08-22 23:04:09,848 INFO  [Timer-0] Sync GoogleDoc{name=StringProperty [value: Employee], exportDir=StringProperty [value: D:\tempJava], status=StringProperty [value: On], exportType=StringProperty [value: CSV], period=IntegerProperty [value: 5], nextSyncDate=ObjectProperty [value: 2017-08-22T23:09], lastSyncDate=ObjectProperty [value: 2017-08-22T23:04:09.847], exportResult=StringProperty [value: SUCCESS], docId=StringProperty [value: 1QgSCimAbg90mW4YJqAhr1ms0CAT1wI3pZqHPoiBqUDQ]} success
+2017-08-22 23:04:57,529 INFO  [main] Start
+2017-08-22 23:04:57,886 INFO  [JavaFX Application Thread] Properties{
+DELAY_AFTER_START : 30
+APP_XML_FILE : D:\tempJava\TempXLS.xml
+GOOGLE_PROJECT_NAME : Employees
+GOOGLE_PROJECT_JSON : P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json
+REPEAT_PERIOD : 30
+USER_NAME : 
+}
+2017-08-22 23:04:58,032 INFO  [AWT-EventQueue-0] 1
+2017-08-22 23:04:58,033 INFO  [AWT-EventQueue-0] 2
+2017-08-22 23:04:58,992 INFO  [JavaFX Application Thread] Open file: 'D:\tempJava\TempXLS.xml'
+2017-08-22 23:05:04,636 INFO  [main] Close
+2017-08-22 23:09:08,236 INFO  [Timer-0] Sync start Tue Aug 22 23:09:08 EEST 2017 :
+2017-08-22 23:09:08,236 INFO  [Timer-0] Sync with: 
+GoogleAPIProject{userName='', projectName='Employees', pathToJson='P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json'}
+2017-08-22 23:09:09,308 INFO  [Timer-0] Sync GoogleDoc{name=StringProperty [value: Employee], exportDir=StringProperty [value: D:\tempJava], status=StringProperty [value: On], exportType=StringProperty [value: CSV], period=IntegerProperty [value: 5], nextSyncDate=ObjectProperty [value: 2017-08-22T23:14], lastSyncDate=ObjectProperty [value: 2017-08-22T23:09:09.308], exportResult=StringProperty [value: SUCCESS], docId=StringProperty [value: 1QgSCimAbg90mW4YJqAhr1ms0CAT1wI3pZqHPoiBqUDQ]} success
+2017-08-22 23:14:08,236 INFO  [Timer-0] Sync start Tue Aug 22 23:14:08 EEST 2017 :
+2017-08-22 23:14:08,237 INFO  [Timer-0] Sync with: 
+GoogleAPIProject{userName='', projectName='Employees', pathToJson='P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json'}
+2017-08-22 23:14:09,419 INFO  [Timer-0] Sync GoogleDoc{name=StringProperty [value: Employee], exportDir=StringProperty [value: D:\tempJava], status=StringProperty [value: On], exportType=StringProperty [value: CSV], period=IntegerProperty [value: 5], nextSyncDate=ObjectProperty [value: 2017-08-22T23:19], lastSyncDate=ObjectProperty [value: 2017-08-22T23:14:09.418], exportResult=StringProperty [value: SUCCESS], docId=StringProperty [value: 1QgSCimAbg90mW4YJqAhr1ms0CAT1wI3pZqHPoiBqUDQ]} success
+2017-08-22 23:19:08,236 INFO  [Timer-0] Sync start Tue Aug 22 23:19:08 EEST 2017 :
+2017-08-22 23:19:08,238 INFO  [Timer-0] Sync with: 
+GoogleAPIProject{userName='', projectName='Employees', pathToJson='P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json'}
+2017-08-22 23:19:08,911 INFO  [Timer-0] Sync GoogleDoc{name=StringProperty [value: Employee], exportDir=StringProperty [value: D:\tempJava], status=StringProperty [value: On], exportType=StringProperty [value: CSV], period=IntegerProperty [value: 5], nextSyncDate=ObjectProperty [value: 2017-08-22T23:24], lastSyncDate=ObjectProperty [value: 2017-08-22T23:19:08.910], exportResult=StringProperty [value: SUCCESS], docId=StringProperty [value: 1QgSCimAbg90mW4YJqAhr1ms0CAT1wI3pZqHPoiBqUDQ]} success
+2017-08-22 23:24:08,237 INFO  [Timer-0] Sync start Tue Aug 22 23:24:08 EEST 2017 :
+2017-08-22 23:24:08,239 INFO  [Timer-0] Sync with: 
+GoogleAPIProject{userName='', projectName='Employees', pathToJson='P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json'}
+2017-08-22 23:24:09,243 INFO  [Timer-0] Sync GoogleDoc{name=StringProperty [value: Employee], exportDir=StringProperty [value: D:\tempJava], status=StringProperty [value: On], exportType=StringProperty [value: CSV], period=IntegerProperty [value: 5], nextSyncDate=ObjectProperty [value: 2017-08-22T23:29], lastSyncDate=ObjectProperty [value: 2017-08-22T23:24:09.243], exportResult=StringProperty [value: SUCCESS], docId=StringProperty [value: 1QgSCimAbg90mW4YJqAhr1ms0CAT1wI3pZqHPoiBqUDQ]} success
+2017-08-22 23:25:24,581 INFO  [main] Start
+2017-08-22 23:25:24,973 INFO  [JavaFX Application Thread] Properties{
+DELAY_AFTER_START : 30
+APP_XML_FILE : D:\tempJava\TempXLS.xml
+GOOGLE_PROJECT_NAME : Employees
+GOOGLE_PROJECT_JSON : P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json
+REPEAT_PERIOD : 30
+USER_NAME : 
+}
+2017-08-22 23:25:25,135 INFO  [AWT-EventQueue-0] 1
+2017-08-22 23:25:25,135 INFO  [AWT-EventQueue-0] 2
+2017-08-22 23:25:25,209 INFO  [AWT-EventQueue-0] Tray icon: /P:/Java/FX/SynchrOn/target/classes/images/SynchrOn_16.png
+2017-08-22 23:25:26,567 INFO  [JavaFX Application Thread] Open file: 'D:\tempJava\TempXLS.xml'
+2017-08-22 23:25:38,215 INFO  [main] Close

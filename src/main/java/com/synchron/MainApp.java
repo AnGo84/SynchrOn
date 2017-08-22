@@ -188,11 +188,21 @@ public class MainApp extends Application {
         // sets up the tray icon (using awt code run on the swing thread).
         systemTray = new SystemTray(primaryStage, this);
 //        javax.swing.SwingUtilities.invokeLater(this:: systemTray.addAppToTray);
+
         javax.swing.SwingUtilities.invokeLater(
                 new Runnable() {
-
                     public void run() {
-                        systemTray.addAppToTray();
+                        getRootLogger().info("1");
+                        try {
+                            getRootLogger().info("2");
+                            systemTray.addAppToTray();
+
+                        } catch (AWTException|IOException e) {
+                            //e.printStackTrace();
+                            getRootLogger().info("Can't crate Tray icon: \n"+ e.getMessage());
+                            systemTray.onExitAction();
+
+                        }
                     }
                 }
         );
