@@ -12,28 +12,19 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Timer;
 
 /**
  * Created by AnGo on 21.08.2017.
  */
 public class SystemTray {
-    // a timer allowing the tray icon to provide a periodic notification event.
-    private static Timer notificationTimer = new Timer();
-    // format used to display the current time in a tray icon notification.
-    private static DateFormat timeFormat = SimpleDateFormat.getTimeInstance();
-    // application stage is stored so that it can be shown and hidden based on system tray icon operations.
-    private Stage stage;
-
-    private java.awt.SystemTray tray = java.awt.SystemTray.getSystemTray();
-    private java.awt.TrayIcon trayIcon;
-
-    private MainApp mainApp;
 
     // setup the popup menu for the application.
     final java.awt.PopupMenu popup = new java.awt.PopupMenu();
+    // application stage is stored so that it can be shown and hidden based on system tray icon operations.
+    private Stage stage;
+    private java.awt.SystemTray tray = java.awt.SystemTray.getSystemTray();
+    private java.awt.TrayIcon trayIcon;
+    private MainApp mainApp;
 
     public SystemTray(Stage stage, MainApp mainApp) {
         this.stage = stage;
@@ -43,8 +34,8 @@ public class SystemTray {
     /**
      * Sets up a system tray icon for the application.
      */
-    public void addAppToTray() {
-        try {
+    public void addAppToTray() throws AWTException, IOException {
+        //try {
 
             // ensure awt toolkit is initialized.
             java.awt.Toolkit.getDefaultToolkit();
@@ -70,32 +61,15 @@ public class SystemTray {
             trayIcon.setPopupMenu(popup);
 
 
-//            // create a timer which periodically displays a notification message.
-//            notificationTimer.schedule(
-//                    new TimerTask() {
-//                        @Override
-//                        public void run() {
-//                            showTrayMessage(trayIcon, "Message", "Message text", TrayIcon.MessageType.WARNING);
-////                            javax.swing.SwingUtilities.invokeLater(() ->
-////                                    trayIcon.displayMessage(
-////                                            "hello",
-////                                            "The time is now " + timeFormat.format(new Date()),
-////                                            java.awt.TrayIcon.MessageType.INFO
-////                                    )
-////                            );
-//                        }
-//                    },
-//                    5_000,
-//                    60_000
-//            );
-
             // add the application tray icon to the system tray.
             tray.add(trayIcon);
-        } catch (java.awt.AWTException | IOException e) {
-//        } catch (java.awt.AWTException e) {
-            System.out.println("Unable to init system tray");
-            e.printStackTrace();
-        }
+
+//        } catch (java.awt.AWTException | IOException e) {
+////        } catch (java.awt.AWTException e) {
+//            System.out.println("Unable to init system tray");
+//            e.printStackTrace();
+//        }
+       // }
     }
 
     private void setUpTrayIconPopupMenu() {
@@ -130,14 +104,13 @@ public class SystemTray {
     }
 
     private void onExitAction() {
-        notificationTimer.cancel();
         Platform.exit();
         tray.remove(trayIcon);
     }
 
 
     public void showTrayMessage(String title, String text, java.awt.TrayIcon.MessageType type) {
-        if (trayIcon!=null) {
+        if (trayIcon != null) {
             javax.swing.SwingUtilities.invokeLater(() -> trayIcon.displayMessage(title, text, type));
         }
     }
