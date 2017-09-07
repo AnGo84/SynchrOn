@@ -33,16 +33,29 @@ public class RootLayoutController {
     }
 
     public void onMenuItemNew(ActionEvent actionEvent) {
+        if (mainApp.isConfirmNotSave()) {
+            mainApp.handleSaveAs();
+        }
         mainApp.getGoogleDocList().clear();
         PreferencesHandler.setPreferenceFilePath(null, mainApp.getClass(), PreferencesHandler.LAST_FILE_PATH);
-        mainApp.setTableEdited(false);
-        mainApp.setMainAppTitle(null);
+        //mainApp.setTableEdited(false);
+        mainApp.setTableFileName("New");
+        mainApp.setHasChanged(false);
+        //mainApp.setMainAppTitle(null);
+
     }
 
     public void onMenuItemExit(ActionEvent actionEvent) {
         if (mainApp.shutDown()) {
-            Platform.exit();
+            mainApp.getSystemTray().onExitAction();
         }
+    }
+
+    public void onMenuItemClose(ActionEvent actionEvent) {
+//        if (mainApp.shutDown()) {
+//            Platform.exit();
+//        }
+        mainApp.getPrimaryStage().close();
     }
 
     public void onMenuItemOpen(ActionEvent actionEvent) {
@@ -80,10 +93,10 @@ public class RootLayoutController {
 ////                    Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Saving error", "Error on saving file " + file.getAbsoluteFile(), e.getMessage()), mainApp.getRootLogger());
 //                }
 //            } else {
-//                Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Warning!", "Cannot save file '" + file + "'", "The wrong path or file not exist"), null);
+//                Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Warning", "Cannot save file '" + file + "'", "The wrong path or file not exist"), null);
 //            }
 //        } else {
-//            Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Data error", "Nothing to save!", "Table is empty"), mainApp.getRootLogger());
+//            Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Data error", "Nothing to save", "Table is empty"), mainApp.getRootLogger());
 //        }
     }
 
@@ -135,7 +148,10 @@ public class RootLayoutController {
                     Sheets service = mainApp.getService();
                     if (service != null) {
                         GoogleDocExport.exportGoogleDocToFile(service, exportType, fileNameWithoutType, mainApp.getCurrentGoogleDoc());
-                        mainApp.setTableEdited(true);
+
+                        //mainApp.setTableEdited(true);
+                        mainApp.setHasChanged(true);
+
                         Dialogs.showMessage(Alert.AlertType.INFORMATION, new DialogText("Export file", "File '" + fileNameWithoutType + "' exported to '" + exportType.getTypeName() + "' successful!", ""), MainApp.getRootLogger());
                     }
                 } catch (IOException e) {
@@ -145,7 +161,7 @@ public class RootLayoutController {
             }
 
         } else {
-            Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Data error", "Nothing to save!", "Table is empty"), MainApp.getRootLogger());
+            Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Data error", "Nothing to save", "Table is empty"), MainApp.getRootLogger());
         }
     }
 
@@ -154,7 +170,7 @@ public class RootLayoutController {
 
         String fileName = GoogleDocExport.getExportFileName(googleDoc);
         if (fileName.equals("")) {
-            fileName = Dialogs.showTextInputDialog(new DialogText("Input file name", "File name is not settled!", "Enter your file name:"), GoogleDocExport.DEFAULT_EXPORT_FILE_NAME);
+            fileName = Dialogs.showTextInputDialog(new DialogText("Input file name", "File name is not settled", "Enter your file name:"), GoogleDocExport.DEFAULT_EXPORT_FILE_NAME);
         }
         String directoryName = GoogleDocExport.getExportDirectory(googleDoc);
         if (directoryName.equals("")) {

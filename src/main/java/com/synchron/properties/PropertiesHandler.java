@@ -26,9 +26,11 @@ public class PropertiesHandler {
         }
         Properties properties = new Properties();
         if (!file.exists()) {
+            //System.out.println("Create file: " +file.getPath());
             file.createNewFile();
         } else {
             try (InputStream inputStream = new FileInputStream(file)) {
+                //System.out.println("Read file: " +file.getPath());
                 properties.load(inputStream);
             }
         }

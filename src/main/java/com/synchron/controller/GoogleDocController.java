@@ -310,7 +310,8 @@ public class GoogleDocController {
         if (selectedIndex >= 0) {
             if (Dialogs.showConfirmDialog(new DialogText("Delete record", "You want to delete record: \n" + tableGoogleDoc.getSelectionModel().getSelectedItem().toInfoString(), "Confirm?"), mainApp.getRootLogger())) {
                 tableGoogleDoc.getItems().remove(selectedIndex);
-                mainApp.setTableEdited(true);
+                //mainApp.setTableEdited(true);
+                mainApp.setHasChanged(true);
             }
         } else {
             Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("No Selection", "No Record Selected", "Please select a record in the table."), null);
@@ -321,7 +322,8 @@ public class GoogleDocController {
         GoogleDoc tempGoogleDoc = new GoogleDoc();
         boolean okClicked = mainApp.showGoogleDocEditDialog(tempGoogleDoc);
         if (okClicked) {
-            mainApp.setTableEdited(true);
+            //mainApp.setTableEdited(true);
+            mainApp.setHasChanged(true);
             mainApp.getGoogleDocList().add(tempGoogleDoc);
         }
     }
@@ -331,7 +333,8 @@ public class GoogleDocController {
         if (selectedGoogleDoc != null) {
             boolean okClicked = mainApp.showGoogleDocEditDialog(selectedGoogleDoc);
             if (okClicked) {
-                mainApp.setTableEdited(true);
+                //mainApp.setTableEdited(true);
+                mainApp.setHasChanged(true);
                 showGoogleDocDetails(selectedGoogleDoc);
             }
         } else {

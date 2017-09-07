@@ -27,6 +27,8 @@ import java.util.Properties;
  * Created by AnGo on 13.06.2017.
  */
 public class SettingsController {
+    private static final String GOOGLE_APP_PROJECT_NAME = "Synchron";
+
     @FXML
     private Button buttonOk;
     @FXML
@@ -100,7 +102,7 @@ public class SettingsController {
             //Properties newProperties = new Properties(properties);
 
             textFUserName.setText(properties.getProperty(PropertiesHandler.USER_NAME, ""));
-            textFProjectName.setText(properties.getProperty(PropertiesHandler.GOOGLE_PROJECT_NAME, ""));
+            textFProjectName.setText(properties.getProperty(PropertiesHandler.GOOGLE_PROJECT_NAME, GOOGLE_APP_PROJECT_NAME));
             textFJsonFile.setText(properties.getProperty(PropertiesHandler.GOOGLE_PROJECT_JSON, ""));
             textFXMLFile.setText(properties.getProperty(PropertiesHandler.APP_XML_FILE, ""));
 

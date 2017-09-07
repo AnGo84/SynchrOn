@@ -21,6 +21,10 @@ import com.synchron.properties.PreferencesHandler;
 import com.synchron.properties.PropertiesHandler;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -45,9 +49,12 @@ import java.util.List;
 
 public class MainApp extends Application {
     private static final String APP_NAME = "SynchrOn App";
-    private static final String CONFIG_FILE_NAME = "config.properties";
+    private static final String CONFIG_FILE_NAME = "SynchrOn.properties";
     private static final Logger rootLogger = LogManager.getRootLogger();
-    private static boolean tableEdited = false;
+
+    private String tableFileName = "New";
+    //private static boolean tableEdited = false;
+    private BooleanProperty hasChanged = new SimpleBooleanProperty(false);
 
     private Properties properties = new Properties();
     private File propertiesFile = FileUtils.getFileWithName(this.getClass(), CONFIG_FILE_NAME);
@@ -62,14 +69,19 @@ public class MainApp extends Application {
 
         @Override
         public void run() {
-            Calendar timerNow = Calendar.getInstance();
-            Date timerNowDate = timerNow.getTime();
-            //System.out.println("Timer reached: " + timerNowDate);
-            List<GoogleDoc> googleDocs = getTaskList(timerNowDate);
-            autoExport(googleDocs, timerNowDate);
-
+            Platform.runLater(
+                    new Runnable() {
+                        @Override
+                        public void run() {
+                            Calendar timerNow = Calendar.getInstance();
+                            Date timerNowDate = timerNow.getTime();
+                            //System.out.println("Timer reached: " + timerNowDate);
+                            List<GoogleDoc> googleDocs = getTaskList(timerNowDate);
+                            autoExport(googleDocs, timerNowDate);
+                        }
+                    }
+            );
         }
-
     };
 
     {
@@ -87,28 +99,41 @@ public class MainApp extends Application {
         return rootLogger;
     }
 
-    public static boolean isTableEdited() {
-        return tableEdited;
-    }
-
-    public void setTableEdited(boolean tableEdited) {
-        this.tableEdited = tableEdited;
-    }
-
     public static String getAppName() {
         return APP_NAME;
     }
 
     public static void main(String[] args) {
         rootLogger.info("Start");
-        if (DateUtil.isEndTrial(new Date())) {
-            rootLogger.info("Trial period ended");
-
-        } else {
-            launch(args);
-        }
+//        if (DateUtil.isEndTrial(new Date())) {
+//            rootLogger.info("Trial period ended");
+//
+//        } else {
+//            launch(args);
+//        }
+        launch(args);
 
         rootLogger.info("Close");
+    }
+
+    public boolean isHasChanged() {
+        return hasChanged.get();
+    }
+
+    public void setHasChanged(boolean hasChanged) {
+        this.hasChanged.set(hasChanged);
+    }
+
+    public BooleanProperty hasChangedProperty() {
+        return hasChanged;
+    }
+
+    public String getTableFileName() {
+        return tableFileName;
+    }
+
+    public void setTableFileName(String tableFileName) {
+        this.tableFileName = tableFileName;
     }
 
     public SystemTray getSystemTray() {
@@ -150,9 +175,13 @@ public class MainApp extends Application {
                 if (!googleDoc.getName().equals("") && googleDoc.getExportType() != null && !GoogleDocExport.getExportDirectory(googleDoc).equals("")) {
                     try {
                         GoogleDocExport.exportGoogleDocToFile(getService(), ExportType.valueOf(googleDoc.getExportType()), GoogleDocExport.fileNameWithoutType(googleDoc.getExportDir(), googleDoc.getName()), googleDoc);
-                        setTableEdited(true);
+
+                        //setTableEdited(true);
+                        setHasChanged(true);
+
                         systemTray.showTrayMessage(APP_NAME, "Sync '" + googleDoc.getName() + "' success", TrayIcon.MessageType.INFO);
                         rootLogger.info("Sync " + googleDoc.toShortString() + " success");
+
                     } catch (IOException | ArithmeticException e) {
                         GoogleDocExport.setExportResults(googleDoc, ExportResult.FAIL);
                         systemTray.showTrayMessage(APP_NAME, "Sync '" + googleDoc.getName() + "' error", TrayIcon.MessageType.ERROR);
@@ -179,8 +208,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
 
-        this.primaryStage.setTitle(APP_NAME);
-
+        //this.primaryStage.setTitle(APP_NAME);
 
         // instructs the javafx system not to exit implicitly when the last application window is shut.
         Platform.setImplicitExit(false);
@@ -192,20 +220,29 @@ public class MainApp extends Application {
         javax.swing.SwingUtilities.invokeLater(
                 new Runnable() {
                     public void run() {
-                        getRootLogger().info("1");
                         try {
-                            getRootLogger().info("2");
+                            //getRootLogger().info("2");
                             systemTray.addAppToTray();
 
-                        } catch (AWTException|IOException e) {
+                        } catch (AWTException | IOException e) {
                             //e.printStackTrace();
-                            getRootLogger().info("Can't crate Tray icon: \n"+ e.getMessage());
+                            getRootLogger().info("Can't crate Tray icon: \n" + e.getMessage());
                             systemTray.onExitAction();
-
                         }
                     }
                 }
         );
+
+        // Add table records' changes listener
+        hasChanged.addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                //System.out.println("changed " + oldValue + "->" + newValue + " in thread: " + Thread.currentThread().getName());
+                if (Platform.isFxApplicationThread()) {
+                    setMainAppTitle();
+                }
+            }
+        });
 
 
         initRootLayout();
@@ -382,7 +419,7 @@ public class MainApp extends Application {
     }
 
     public void loadGoogleDocsFromFile(File file) {
-        setMainAppTitle(null);
+
         if (file != null) {
             if (file.exists()) {
                 PreferencesHandler.setPreferenceFilePath(file, MainApp.class, PreferencesHandler.LAST_FILE_PATH);
@@ -390,17 +427,22 @@ public class MainApp extends Application {
                     getGoogleDocList().clear();
                     getGoogleDocList().addAll(XMLIOHandler.readGoogleDocsFromFile(file));
                     getRootLogger().info("Open file: '" + file.getAbsolutePath() + "'");
-                    setMainAppTitle(file.getName());
 
-                    setTableEdited(false);
+                    //setMainAppTitle(file.getName());
+                    tableFileName = file.getPath();
+                    //setTableEdited(false);
+                    hasChanged.set(false);
+
+
                 } catch (JAXBException e) {
 //                e.printStackTrace();
                     Dialogs.showErrorDialog(e, new DialogText("Open error", "Cannot open file '" + file.getAbsolutePath() + "'", "The error is: "), getRootLogger());
                 }
             } else {
-                Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Warning!", "Cannot open file '" + file + "'", "The wrong path or file not exist"), null);
+                Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Warning", "Cannot open file '" + file + "'", "The wrong path or file not exist"), null);
             }
         }
+        setMainAppTitle();
     }
 
     public void loadGoogleDocsFromFile(String fileName) {
@@ -410,12 +452,29 @@ public class MainApp extends Application {
         }
     }
 
-    public void setMainAppTitle(String addName) {
-        if (addName != null && !addName.equals("")) {
-            addName = " - " + addName;
-        } else addName = "";
+//    public void setMainAppTitle(String addName) {
+//        if (addName != null && !addName.equals("")) {
+//            addName = " - " + addName;
+//        } else addName = "";
+//
+//        primaryStage.setTitle(APP_NAME + addName);
+//    }
 
-        primaryStage.setTitle(APP_NAME + addName);
+    public void setMainAppTitle(String newName) {
+        if (newName != null && !newName.equals("")) {
+            tableFileName = newName;
+        } else newName = "New";
+
+        setMainAppTitle();
+    }
+
+    private void setMainAppTitle() {
+        String text = "";
+        if (isHasChanged()) {
+            text = " (changed)";
+        }
+        //System.out.println("Change TITLE: " + APP_NAME + " - " + tableFileName + " - " + text);
+        primaryStage.setTitle(APP_NAME + " - " + tableFileName + text);
     }
 
     public boolean isEmptyDocList() {
@@ -434,15 +493,22 @@ public class MainApp extends Application {
         return false;
     }
 
-    private boolean isConfirmShutDown() {
-        if (isTableEdited()) {
-            if (Dialogs.showConfirmDialog(new DialogText("Close application", "Table was editing", "Quit without saving?"), null)) {
-                return true;
-            }
 
+    private boolean isConfirmShutDown() {
+        if (isConfirmNotSave()) {
+            return true;
         } else {
             if (Dialogs.showConfirmDialog(new DialogText("Close application", "Application will be closed", "Are you agree?"), null))
                 return true;
+        }
+        return false;
+    }
+
+    public boolean isConfirmNotSave() {
+        if (isHasChanged()) {
+            if (Dialogs.showConfirmDialog(new DialogText("Close application", "Table was editing", "Quit without saving?"), null)) {
+                return true;
+            }
         }
         return false;
     }
@@ -457,13 +523,17 @@ public class MainApp extends Application {
         return googleDocs;
     }
 
-    public void saveMainTable(){
+    public void saveMainTable() {
         //        File file = PreferencesHandler.getPreferenceFilePath(mainApp.getClass(), PreferencesHandler.LAST_FILE_PATH);
         File file = new File(PropertiesHandler.getPropertyString(getProperties(), PropertiesHandler.APP_XML_FILE));
         if (file != null) {
             try {
                 XMLIOHandler.writeGoogleDocsToXMLFile(file, getGoogleDocList());
-                setTableEdited(false);
+
+                tableFileName = file.getPath();
+                //setTableEdited(false);
+                hasChanged.set(false);
+
                 Dialogs.showMessage(Alert.AlertType.INFORMATION, new DialogText("Saving file", "File '" + file.getAbsolutePath() + "' saved successful", ""), getRootLogger());
             } catch (JAXBException e) {
                 Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Saving error", "Error on saving file " + file.getAbsoluteFile(), e.getMessage()), getRootLogger());
@@ -473,7 +543,7 @@ public class MainApp extends Application {
         }
     }
 
-    public void handleSaveAs(){
+    public void handleSaveAs() {
         if (!isEmptyDocList()) {
             FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
             File file = Dialogs.saveFileDialog(PreferencesHandler.getPreferenceFilePath(this.getClass(), PreferencesHandler.LAST_FILE_PATH), extFilter, getPrimaryStage());
@@ -490,7 +560,10 @@ public class MainApp extends Application {
                 getRootLogger().info("Export to XML file '" + file.getParent() + "'");
                 try {
                     XMLIOHandler.writeGoogleDocsToXMLFile(file, getGoogleDocList());
-                    setTableEdited(false);
+
+                    //setTableEdited(false);
+                    hasChanged.set(false);
+
                     Dialogs.showMessage(Alert.AlertType.INFORMATION, new DialogText("Saving file", "File '" + file.getAbsolutePath() + "' saved successful", ""), getRootLogger());
                 } catch (JAXBException e) {
                     Dialogs.showErrorDialog(e, new DialogText("Saving error", "Error on saving file " + file.getAbsoluteFile(), ""), getRootLogger());

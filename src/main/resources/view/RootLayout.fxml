@@ -34,8 +34,14 @@
                             </accelerator>
                         </MenuItem>
                         <!--Hidden for work with tray icon-->
-                        <SeparatorMenuItem mnemonicParsing="false" visible="false" />
-                        <MenuItem fx:id="menuItemExit" mnemonicParsing="false" onAction="#onMenuItemExit" text="Exit" visible="false">
+                        <SeparatorMenuItem mnemonicParsing="false" visible="true" />
+                        <MenuItem fx:id="menuItemClose" mnemonicParsing="false" onAction="#onMenuItemClose" text="Close" visible="true">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                            </accelerator>
+                        </MenuItem>
+
+                        <MenuItem fx:id="menuItemExit" mnemonicParsing="false" onAction="#onMenuItemExit" text="Exit" visible="true">
                             <accelerator>
                                 <KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                             </accelerator>

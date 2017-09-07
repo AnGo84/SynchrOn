@@ -59,7 +59,7 @@
                                             <children>
                                                 <Label text="Project name" />
                                                 <Label text="JSON file" GridPane.rowIndex="1" />
-                                                <TextField fx:id="textFProjectName" promptText="Google API project name" GridPane.columnIndex="1" />
+                                                <TextField fx:id="textFProjectName" editable="false" promptText="Google API project name" GridPane.columnIndex="1" />
                                                 <TextField fx:id="textFJsonFile" promptText="Path to file with Google API settings" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Button fx:id="buttonChooseJson" mnemonicParsing="false" onAction="#onButtonChooseJson" prefHeight="25.0" prefWidth="30.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                                     <GridPane.margin>

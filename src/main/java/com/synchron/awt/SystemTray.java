@@ -105,6 +105,7 @@ public class SystemTray {
     }
 
     public void onExitAction() {
+
         Platform.exit();
         tray.remove(trayIcon);
     }
