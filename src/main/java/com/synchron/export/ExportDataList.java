@@ -6,24 +6,24 @@ import java.util.List;
 /**
  * Created by AnGo on 21.06.2017.
  */
-public class ExportData {
-    private String name;
+public class ExportDataList {
+    private String fileName;
     private List<String[]> dataList = new ArrayList<>();
 
-    public ExportData() {
+    public ExportDataList() {
     }
 
-    public ExportData(String name, List<String[]> dataList) {
-        this.name = name;
+    public ExportDataList(String fileName, List<String[]> dataList) {
+        this.fileName = fileName;
         this.dataList = dataList;
     }
 
-    public String getName() {
-        return name;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     public List<String[]> getDataList() {

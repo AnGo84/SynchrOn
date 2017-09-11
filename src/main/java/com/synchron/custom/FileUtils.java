@@ -146,4 +146,10 @@ public class FileUtils {
             Runtime.getRuntime().exec("explorer.exe " + file.getPath());
         }
     }
+
+
+    public static String fileNameWithDir(String directoryName, String fileName){
+        return directoryName + File.separator + fileName;
+    }
+
 }

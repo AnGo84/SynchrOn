@@ -3,6 +3,7 @@ package com.synchron.controller;
 import com.synchron.MainApp;
 import com.synchron.custom.DateUtil;
 import com.synchron.custom.FileUtils;
+import com.synchron.export.ExportHandler;
 import com.synchron.export.ExportResult;
 import com.synchron.fx.DialogText;
 import com.synchron.fx.Dialogs;
@@ -15,13 +16,18 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
+import java.awt.*;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by AnGo on 08.06.2017.
@@ -248,11 +254,13 @@ public class GoogleDocController {
                         setText(result);
 
                         if (ExportResult.FAIL == ExportResult.valueOf(result)) {
-                            setTextFill(Color.BLUE);
-                            setStyle("-fx-background-color: red");
+                            //setTextFill(Color.BLUE);
+                            setTextFill(Color.rgb(100, 50, 150));
+                            setStyle("-fx-background-color: rgba(250,0,0,0.6)");
                         } else {
-                            setTextFill(Color.YELLOW);
-                            setStyle("-fx-background-color: darkgreen");
+                            //setTextFill(Color.YELLOW);
+                            setTextFill(Color.rgb(230, 230, 75));
+                            setStyle("-fx-background-color: rgba(70,140,35,0.7)");
                         }
                     }
                 }
@@ -400,5 +408,24 @@ public class GoogleDocController {
     }
 
     public void onButtonSync(ActionEvent actionEvent) {
+        Calendar timerNow = Calendar.getInstance();
+        Date timerNowDate = timerNow.getTime();
+        //System.out.println("Try manual sync: ");
+        GoogleDoc googleDoc = mainApp.getCurrentGoogleDoc();
+        try {
+            ExportHandler.exportGoogleDoc(mainApp.getService(), googleDoc, timerNowDate);
+            //setTableEdited(true);
+            mainApp.setHasChanged(true);
+            //mainApp.getSystemTray().showTrayMessage(mainApp.getAppName(), "Sync '" + googleDoc.getName() + "' success", TrayIcon.MessageType.INFO);
+            mainApp.getRootLogger().info("Sync " + mainApp.getCurrentGoogleDoc().toShortString() + " success");
+
+        } catch (IOException | ArithmeticException | IllegalArgumentException e) {
+            googleDoc.setExportResults(new Date(), ExportResult.FAIL);
+            //Dialogs.showErrorDialog(e, new DialogText("Export error", "Can't export " + googleDoc.getName(), "The error is: "), mainApp.getRootLogger());
+            Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Initialization error", "Cannot read Google API", e.getMessage()), mainApp.getRootLogger());
+            //mainApp.getSystemTray().showTrayMessage(mainApp.getAppName(), "Sync '" + googleDoc.getName() + "' error", TrayIcon.MessageType.ERROR);
+            mainApp.getRootLogger().error("Error on  sync " + googleDoc.toShortString() + " with message: " + e.getMessage());
+        }
+
     }
 }

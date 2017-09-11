@@ -19,7 +19,7 @@
             <DefaultRolloverStrategy max="30"/>
         </RollingFile>
 
-        <!--<File name="FILE" fileName="${log-path}/logfile.log" append="true">-->
+        <!--<File fileName="FILE" fileName="${log-path}/logfile.log" append="true">-->
             <!--<PatternLayout pattern="%-5p | %d{yyyy-MM-dd HH:mm:ss} | [%t] %C{2} (%F:%L) - %m%n"/>-->
         <!--</File>-->
         <Console name="Console" target="SYSTEM_OUT">

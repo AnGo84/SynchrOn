@@ -7,18 +7,18 @@ import com.synchron.awt.SystemTray;
 import com.synchron.controller.*;
 import com.synchron.custom.DateUtil;
 import com.synchron.custom.FileUtils;
+import com.synchron.export.ExportHandler;
 import com.synchron.export.ExportResult;
-import com.synchron.export.ExportType;
 import com.synchron.export.XMLIOHandler;
 import com.synchron.fx.DialogText;
 import com.synchron.fx.Dialogs;
-import com.synchron.fx.GoogleDocExport;
 import com.synchron.fx.ImageResources;
 import com.synchron.google.GoogleSheetIOHandler;
 import com.synchron.model.DocSheet;
 import com.synchron.model.GoogleDoc;
 import com.synchron.properties.PreferencesHandler;
 import com.synchron.properties.PropertiesHandler;
+import com.synchron.security.Security;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
@@ -33,10 +33,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.FileChooser;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
+import javafx.stage.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -104,6 +101,7 @@ public class MainApp extends Application {
     }
 
     public static void main(String[] args) {
+
         rootLogger.info("Start");
 //        if (DateUtil.isEndTrial(new Date())) {
 //            rootLogger.info("Trial period ended");
@@ -172,22 +170,21 @@ public class MainApp extends Application {
         if (googleDocs != null && !googleDocs.isEmpty()) {
             rootLogger.info("Sync start " + timerNowDate + " :");
             for (GoogleDoc googleDoc : googleDocs) {
-                if (!googleDoc.getName().equals("") && googleDoc.getExportType() != null && !GoogleDocExport.getExportDirectory(googleDoc).equals("")) {
-                    try {
-                        GoogleDocExport.exportGoogleDocToFile(getService(), ExportType.valueOf(googleDoc.getExportType()), GoogleDocExport.fileNameWithoutType(googleDoc.getExportDir(), googleDoc.getName()), googleDoc);
+                //if (!googleDoc.getName().equals("") && googleDoc.getExportType() != null && !googleDoc.getExportDirectory().equals("")) {
+                try {
+                    ExportHandler.exportGoogleDoc(getService(), googleDoc, timerNowDate);
+                    //setTableEdited(true);
+                    setHasChanged(true);
 
-                        //setTableEdited(true);
-                        setHasChanged(true);
+                    systemTray.showTrayMessage(APP_NAME, "Sync '" + googleDoc.getName() + "' success", TrayIcon.MessageType.INFO);
+                    rootLogger.info("Sync " + googleDoc.toShortString() + " success");
 
-                        systemTray.showTrayMessage(APP_NAME, "Sync '" + googleDoc.getName() + "' success", TrayIcon.MessageType.INFO);
-                        rootLogger.info("Sync " + googleDoc.toShortString() + " success");
-
-                    } catch (IOException | ArithmeticException e) {
-                        GoogleDocExport.setExportResults(googleDoc, ExportResult.FAIL);
-                        systemTray.showTrayMessage(APP_NAME, "Sync '" + googleDoc.getName() + "' error", TrayIcon.MessageType.ERROR);
-                        rootLogger.error("Error on  sync " + googleDoc.toShortString() + " with message: " + e.getMessage());
-                    }
+                } catch (IOException | ArithmeticException | IllegalArgumentException e) {
+                    googleDoc.setExportResults(new Date(), ExportResult.FAIL);
+                    systemTray.showTrayMessage(APP_NAME, "Sync '" + googleDoc.getName() + "' error", TrayIcon.MessageType.ERROR);
+                    rootLogger.error("Error on  sync " + googleDoc.toShortString() + " with message: " + e.getMessage());
                 }
+                //}
             }
         }
     }
@@ -206,6 +203,11 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        if (Security.checkTrialPeriod()) {
+            //Dialogs.showInfoDialog(new DialogText("Licence info", "Trial period expired", "You can visit our site:"), "www.google.com","site",  getHostServices());
+            showTrialDialog();
+        }
+
         this.primaryStage = primaryStage;
 
         //this.primaryStage.setTitle(APP_NAME);
@@ -237,16 +239,14 @@ public class MainApp extends Application {
         hasChanged.addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                //System.out.println("changed " + oldValue + "->" + newValue + " in thread: " + Thread.currentThread().getName());
+                //System.out.println("changed " + oldValue + "->" + newValue + " in thread: " + Thread.currentThread().getFileName());
                 if (Platform.isFxApplicationThread()) {
                     setMainAppTitle();
                 }
             }
         });
 
-
         initRootLayout();
-
         showGoogleDocView();
     }
 
@@ -418,6 +418,41 @@ public class MainApp extends Application {
         }
     }
 
+
+    public void showTrialDialog() {
+        try {
+            // Загружаем fxml-файл и создаём новую сцену
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("/view/TrialInfo_View.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Создаём диалоговое окно Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setResizable(false);
+            dialogStage.setTitle("Info");
+            dialogStage.getIcons().add(ImageResources.getAppIcon());
+
+            dialogStage.initStyle(StageStyle.UTILITY);
+
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Передаём таблицу в контроллер.
+            TrialInfoController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setHostServices(this.getHostServices());
+            //controller.setMainApp(this);
+
+            // Отображаем диалоговое окно и ждём, пока пользователь его не закроет
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            Dialogs.showErrorDialog(e, new DialogText("Form show error", "", "Can't open form 'Trial dialog'"), rootLogger);
+        }
+    }
+
     public void loadGoogleDocsFromFile(File file) {
 
         if (file != null) {
@@ -428,7 +463,7 @@ public class MainApp extends Application {
                     getGoogleDocList().addAll(XMLIOHandler.readGoogleDocsFromFile(file));
                     getRootLogger().info("Open file: '" + file.getAbsolutePath() + "'");
 
-                    //setMainAppTitle(file.getName());
+                    //setMainAppTitle(file.getFileName());
                     tableFileName = file.getPath();
                     //setTableEdited(false);
                     hasChanged.set(false);
@@ -576,4 +611,5 @@ public class MainApp extends Application {
             Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Data error", "Nothing to save!", "Table is empty"), getRootLogger());
         }
     }
+
 }

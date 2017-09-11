@@ -126,7 +126,7 @@ public class GoogleSheetIOHandler {
      */
     public static Sheets getSheetsService(GoogleAPIProject googleAPIProject) throws IOException {
         if (sheetsService == null || GoogleSheetIOHandler.googleAPIProject == null || !GoogleSheetIOHandler.googleAPIProject.equals(googleAPIProject)) {
-//        dataStoreDir = DataStoreDir.getInstance(googleAPIProject.getName());
+//        dataStoreDir = DataStoreDir.getInstance(googleAPIProject.getFileName());
 //        dataStoreFactory = new FileDataStoreFactory(dataStoreDir);
             GoogleSheetIOHandler.googleAPIProject = googleAPIProject;
             dataStoreFactory = DataStoreFactory.getInstance(DataStoreDir.getInstance(googleAPIProject.getProjectName()));

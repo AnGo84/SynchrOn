@@ -1,9 +1,7 @@
 package com.synchron.controller;
 
 import com.synchron.MainApp;
-import com.synchron.export.ExportData;
-import com.synchron.export.ExportHeader;
-import com.synchron.export.ExportType;
+import com.synchron.export.*;
 import com.synchron.fx.DialogText;
 import com.synchron.fx.Dialogs;
 import com.synchron.fx.ImageResources;
@@ -25,7 +23,6 @@ import javafx.util.Callback;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by AnGo on 17.06.2017.
@@ -107,7 +104,7 @@ public class TabSheetController {
         return max;
     }
 
-    public void fillTable(){
+    public void fillTable() {
         tableTabSheet.getColumns().removeAll(tableTabSheet.getColumns());
         stringList = getSheetDetails();
         if (stringList != null && stringList.size() > 0) {
@@ -164,23 +161,25 @@ public class TabSheetController {
 
 
     public void onMenuItemExportToCSV(ActionEvent actionEvent) {
-        exportToFile(ExportType.CSV);
+        exportToFile(new CSVExportToFileImpl());
     }
 
     public void onMenuItemExportToXLS(ActionEvent actionEvent) {
-        exportToFile(ExportType.XLS);
+        exportToFile(new XLSExportToFileImpl());
     }
 
-    private void exportToFile(ExportType exportType) {
+    private void exportToFile(ExportToFile exportToFile) {
         if (googleDoc != null && docSheet != null) {
-            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(exportType.getTypeName().toUpperCase() + " files (*." + exportType.getTypeName().toLowerCase() + ")", "*." + exportType.getTypeName().toLowerCase());
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(exportToFile.getExportFileType().toUpperCase() + " files (*." + exportToFile.getExportFileType().toLowerCase() + ")", "*." + exportToFile.getExportFileType().toLowerCase());
             File file = Dialogs.saveFileDialog(PreferencesHandler.getPreferenceFilePath(mainApp.getClass(), PreferencesHandler.LAST_FILE_PATH), extFilter, dialogStage);
             if (file != null) {
+                mainApp.getRootLogger().info("Export to " + exportToFile.getExportFileType() + " file '" + file.getPath() + "'");
                 try {
-                    ExportHeader.saveExportDataToFile(exportType, file, new ExportData(docSheet.getExportSheetName(), stringList));
-                    Dialogs.showMessage(Alert.AlertType.INFORMATION, new DialogText("Export table", "Table exported to '" + exportType.getTypeName() + "' successful!", ""), MainApp.getRootLogger());
+                    //ExportHandler.saveExportDataToFile(exportToFile, file, new ExportDataList(docSheet.getExportSheetName(), stringList));
+                    exportToFile.exportToFile(file, new ExportDataList(docSheet.getExportSheetName(), stringList));
+                    Dialogs.showMessage(Alert.AlertType.INFORMATION, new DialogText("Export table", "Table exported to '" + exportToFile.getExportFileType() + "' successful", ""), MainApp.getRootLogger());
                 } catch (IOException e) {
-                    Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Export file", "Error on export table to file'" + exportType.getTypeName() + "'!", e.getMessage()), MainApp.getRootLogger());
+                    Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Export file", "Error on export table to file'" + exportToFile.getExportFileType() + "'", e.getMessage()), MainApp.getRootLogger());
                 }
             }
         } else {

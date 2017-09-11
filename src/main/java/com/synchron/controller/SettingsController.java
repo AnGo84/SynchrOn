@@ -139,9 +139,9 @@ public class SettingsController {
         try {
             if (GoogleSheetIOHandler.getSheetsService(googleAPIProject) != null) {
                 //mainApp.setService(GoogleSheetIOHandler.getSheetsService(googleAPIProject));
-                Dialogs.showMessage(Alert.AlertType.INFORMATION, new DialogText("Connection Test", "The connection is successful!", "Connection to: " + googleAPIProject.toString()), mainApp.getRootLogger());
+                Dialogs.showMessage(Alert.AlertType.INFORMATION, new DialogText("Connection Test", "The connection is successful", "Connection to: " + googleAPIProject.toString()), mainApp.getRootLogger());
             } else {
-                Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Connection Test", "The connection is NULL!", "Connection to: " + googleAPIProject.toString()), mainApp.getRootLogger());
+                Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Connection Test", "The connection is NULL", "Connection to: " + googleAPIProject.toString()), mainApp.getRootLogger());
             }
         } catch (IOException e) {
             Dialogs.showErrorDialog(e, new DialogText("Test error", "Cannot connect to Google DocSheet '" + googleAPIProject.toString() + "'", "The error is:"), mainApp.getRootLogger());
@@ -209,10 +209,10 @@ public class SettingsController {
     private boolean isInputValid() {
         String errorMessage = "";
         if (textFDelayAfterStart.getText() == null || textFDelayAfterStart.getText().length() == 0 || Integer.parseInt(textFDelayAfterStart.getText()) == 0) {
-            errorMessage += "No valid field 'Delay after start'. Can't be empty or 0!\n";
+            errorMessage += "No valid field 'Delay after start'. Can't be empty or 0\n";
         }
         if (textFRepeatPeriod.getText() == null || textFRepeatPeriod.getText().length() == 0 || Integer.parseInt(textFRepeatPeriod.getText()) == 0) {
-            errorMessage += "No valid field 'Repeat period'. Can't be empty or 0!\n";
+            errorMessage += "No valid field 'Repeat period'. Can't be empty or 0\n";
         }
 
         if (errorMessage.length() == 0) {
@@ -222,5 +222,9 @@ public class SettingsController {
             //alert.initOwner(dialogStage);
             return false;
         }
+    }
+
+    public void onButtonCheckLicense(ActionEvent actionEvent) {
+        Dialogs.showMessage(Alert.AlertType.INFORMATION, new DialogText("Check license", "The license was not checked", "You don't have a valid license"), null);
     }
 }

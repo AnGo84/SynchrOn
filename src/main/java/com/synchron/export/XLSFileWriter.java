@@ -31,12 +31,12 @@ public class XLSFileWriter {
     }
 
 
-    public static void writeValuesToFile(File file, List<ExportData> exportDataList ) throws IOException {
+    public static void writeValuesToFile(File file, List<ExportDataList> exportDataList ) throws IOException {
         try (FileOutputStream out = new FileOutputStream(file)) {
             //Blank workbook
             HSSFWorkbook workbook = new HSSFWorkbook();
-            for (ExportData exportData : exportDataList) {
-                HSSFSheet model = workbook.createSheet(exportData.getName());
+            for (ExportDataList exportData : exportDataList) {
+                HSSFSheet model = workbook.createSheet(exportData.getFileName());
                 XLSFileWriter.writeListToHSSFSheet(model, exportData.getDataList());
             }
             //Write the workbook in file system

@@ -1,16 +1,11 @@
 package com.synchron.awt;
 
 import com.synchron.MainApp;
-import com.synchron.fx.DialogText;
-import com.synchron.fx.Dialogs;
 import com.synchron.fx.ImageResources;
 import javafx.application.Platform;
-import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -36,15 +31,12 @@ public class SystemTray {
      * Sets up a system tray icon for the application.
      */
     public void addAppToTray() throws AWTException, IOException {
-        //try {
-
         // ensure awt toolkit is initialized.
         java.awt.Toolkit.getDefaultToolkit();
 
         // app requires system tray support, just exit if there is no support.
         if (!java.awt.SystemTray.isSupported()) {
             //Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Application error", "Error with system", "No system tray support, application exiting."), null);
-
             mainApp.getRootLogger().info("No system tray support, application exiting.");
             //System.out.println("No system tray support, application exiting.");
             Platform.exit();
@@ -65,12 +57,6 @@ public class SystemTray {
 
         // add the application tray icon to the system tray.
         tray.add(trayIcon);
-
-//        } catch (java.awt.AWTException | IOException e) {
-////        } catch (java.awt.AWTException e) {
-//            System.out.println("Unable to init system tray");
-//            e.printStackTrace();
-//        }
     }
 
     private void setUpTrayIconPopupMenu() {

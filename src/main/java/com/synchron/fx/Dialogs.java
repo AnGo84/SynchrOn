@@ -1,19 +1,27 @@
 package com.synchron.fx;
 
+import javafx.application.Application;
+import javafx.application.HostServices;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import java.awt.*;
+import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Optional;
 
 /**
@@ -189,5 +197,35 @@ public class Dialogs {
             result = dialogResult.get();
         }
         return result;
+    }
+
+    public static void showInfoDialog( DialogText dialogText, String link, String defaultLinkText, HostServices hostServices){
+        Alert alert = getAlert(Alert.AlertType.WARNING, dialogText);
+
+
+        final WebView browser = new WebView();
+        final WebEngine webEngine = browser.getEngine();
+        //Optional<String> dialogResult = dialog.showAndWait();
+
+        Hyperlink hyperlink = new Hyperlink(defaultLinkText);
+        hyperlink.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+//                webEngine.load(link);
+
+//                try {
+//                    Desktop.getDesktop().browse(new URI(link));
+//                } catch (IOException e1) {
+//                    //e1.printStackTrace();
+//                } catch (URISyntaxException e1) {
+//                    //e1.printStackTrace();
+//                }
+                hostServices.showDocument(link);
+            }
+
+        });
+        alert.getDialogPane().setExpandableContent(hyperlink);
+
+        alert.showAndWait();
     }
 }

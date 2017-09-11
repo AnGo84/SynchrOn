@@ -16,11 +16,6 @@ public class CSVFileWriter {
 
     public static void writeValuesToCSVFile(File file, List<String[]> stringList) throws IOException {
         try (FileWriter fileWriter = new FileWriter(file)) {
-            //Write the CSV file header
-//            fileWriter.append(fileHeader.toString());
-            //Add a new line separator after the header
-//            fileWriter.append(NEW_LINE_SEPARATOR);
-            //Write a new student object list to the CSV file
             for (String[] strings : stringList) {
                 if (strings != null && strings.length > 0) {
                     fileWriter.append(strings[0]);
@@ -28,18 +23,7 @@ public class CSVFileWriter {
                         fileWriter.append(COMMA_DELIMITER);
                         fileWriter.append(strings[i]);
                     }
-//                    for (String string : strings) {
-//                        fileWriter.append(string);
-//                        fileWriter.append(COMMA_DELIMITER);
-//                    }
                 }
-//                fileWriter.append(String.valueOf(student.getEmployeeId()));
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(student.getLastName());
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(student.getFirstName());
-//                fileWriter.append(COMMA_DELIMITER);
-
                 fileWriter.append(NEW_LINE_SEPARATOR);
             }
         }

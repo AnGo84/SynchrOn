@@ -1,5 +1,7 @@
 package com.synchron.model;
 
+import com.synchron.custom.DateUtil;
+import com.synchron.custom.FileUtils;
 import com.synchron.custom.LocalDateTimeAdapter;
 import com.synchron.export.ExportResult;
 import javafx.beans.property.*;
@@ -7,9 +9,13 @@ import javafx.beans.property.*;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.io.File;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -191,6 +197,52 @@ public class GoogleDoc implements Serializable {
 
     public void setDocSheets(List<DocSheet> docSheets) {
         this.docSheets = docSheets;
+    }
+
+    //
+
+    public String getExportDirectory() {
+        if (exportDir == null) {
+            return "";
+        }
+        File directory = FileUtils.getDirectory(new File(this.getExportDir()));
+        if (directory != null && !"".equals(directory)) {
+            return directory.getAbsolutePath();
+        }
+        return "";
+    }
+
+    public void setExportResults(Date date, ExportResult exportResult) throws IllegalArgumentException {
+        //Date date = new Date();
+        if (date == null || exportResult == null) {
+            throw new IllegalArgumentException("Wrong argument");
+        }
+        setLastSyncDate(DateUtil.getLocalDateTime(date));
+        setExportResult(exportResult.name());
+        Date nextDate = getNextSyncDateFromDate(date, true);
+        if (nextDate != null) {
+            setNextSyncDate(DateUtil.getLocalDateTime(nextDate));
+        }
+    }
+
+    private Date getNextSyncDateFromDate(Date date, boolean skipIfOff) {
+        Date nextDate = null;
+        if (!skipIfOff || getStatus().toUpperCase().equals("ON")) {
+            if (getNextSyncDate() != null) {
+                if (getPeriod() > 0) {
+                    long minutesPass = (ChronoUnit.MINUTES.between(getNextSyncDate(), DateUtil.getLocalDateTime(date)) / getPeriod()) * getPeriod() + getPeriod();
+                    nextDate = DateUtil.addToDate(Date.from(getNextSyncDate().atZone(ZoneId.systemDefault()).toInstant()), (int) (minutesPass * 60));
+                }
+            } else {
+                nextDate = DateUtil.addToDate(date, getPeriod() * 60);
+            }
+        }
+        return nextDate;
+    }
+
+
+    public boolean hasSheets(){
+        return (docSheets != null && !docSheets.isEmpty());
     }
 
     @Override
