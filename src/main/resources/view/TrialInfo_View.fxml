@@ -5,7 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="100.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/8"
+            prefHeight="120.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/8"
             fx:controller="com.synchron.controller.TrialInfoController">
     <children>
         <BorderPane layoutX="92.0" layoutY="78.0" prefHeight="200.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0"
@@ -14,16 +14,17 @@
                 <AnchorPane prefHeight="133.0" prefWidth="339.0" BorderPane.alignment="CENTER">
                     <children>
                         <Label layoutX="10.0" layoutY="10.0" text="You are using a trial version of the program"/>
-                        <Label layoutX="10.0" layoutY="30.0" text="Get a license on the "/>
+                        <Label layoutX="10.0" layoutY="30.0" text="Set your license in the settings or"/>
+                        <Label layoutX="10.0" layoutY="50.0" text="get new license on the "/>
 
-                        <Hyperlink fx:id="hyperlinkSite" layoutX="115.0" layoutY="27.0" text="site"/>
+                        <Hyperlink fx:id="hyperlinkSite" layoutX="127.0" layoutY="47.0" text="site"/>
                     </children>
                 </AnchorPane>
             </center>
             <bottom>
                 <AnchorPane BorderPane.alignment="CENTER">
                     <children>
-                        <Button fx:id="buttonOk" layoutX="90.0" layoutY="13.0" mnemonicParsing="false"
+                        <Button fx:id="buttonActivate" layoutX="90.0" layoutY="13.0" mnemonicParsing="false"
                                 onAction="#onButtonOk" prefHeight="25.0" prefWidth="70.0" text="Ok"
                                 AnchorPane.bottomAnchor="2.0" AnchorPane.topAnchor="2.0"/>
                     </children>

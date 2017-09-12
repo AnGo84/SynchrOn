@@ -1,6 +1,4 @@
-package com.synchron;/**
- * Created by AnGo on 08.06.2017.
- */
+package com.synchron;
 
 import com.google.api.services.sheets.v4.Sheets;
 import com.synchron.awt.SystemTray;
@@ -203,51 +201,52 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        if (Security.checkTrialPeriod()) {
-            //Dialogs.showInfoDialog(new DialogText("Licence info", "Trial period expired", "You can visit our site:"), "www.google.com","site",  getHostServices());
-            showTrialDialog();
-        }
 
-        this.primaryStage = primaryStage;
+        //if (!Security.isEndTrial(new Date())) {
+        if (isLicenseValid()) {
+            this.primaryStage = primaryStage;
 
-        //this.primaryStage.setTitle(APP_NAME);
+            //this.primaryStage.setTitle(APP_NAME);
 
-        // instructs the javafx system not to exit implicitly when the last application window is shut.
-        Platform.setImplicitExit(false);
+            // instructs the javafx system not to exit implicitly when the last application window is shut.
+            Platform.setImplicitExit(false);
 
-        // sets up the tray icon (using awt code run on the swing thread).
-        systemTray = new SystemTray(primaryStage, this);
+            // sets up the tray icon (using awt code run on the swing thread).
+            systemTray = new SystemTray(primaryStage, this);
 //        javax.swing.SwingUtilities.invokeLater(this:: systemTray.addAppToTray);
 
-        javax.swing.SwingUtilities.invokeLater(
-                new Runnable() {
-                    public void run() {
-                        try {
-                            //getRootLogger().info("2");
-                            systemTray.addAppToTray();
+            javax.swing.SwingUtilities.invokeLater(
+                    new Runnable() {
+                        public void run() {
+                            try {
+                                //getRootLogger().info("2");
+                                systemTray.addAppToTray();
 
-                        } catch (AWTException | IOException e) {
-                            //e.printStackTrace();
-                            getRootLogger().info("Can't crate Tray icon: \n" + e.getMessage());
-                            systemTray.onExitAction();
+                            } catch (AWTException | IOException e) {
+                                //e.printStackTrace();
+                                getRootLogger().info("Can't crate Tray icon: \n" + e.getMessage());
+                                systemTray.onExitAction();
+                            }
                         }
                     }
-                }
-        );
+            );
 
-        // Add table records' changes listener
-        hasChanged.addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                //System.out.println("changed " + oldValue + "->" + newValue + " in thread: " + Thread.currentThread().getFileName());
-                if (Platform.isFxApplicationThread()) {
-                    setMainAppTitle();
+            // Add table records' changes listener
+            hasChanged.addListener(new ChangeListener<Boolean>() {
+                @Override
+                public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                    //System.out.println("changed " + oldValue + "->" + newValue + " in thread: " + Thread.currentThread().getFileName());
+                    if (Platform.isFxApplicationThread()) {
+                        setMainAppTitle();
+                    }
                 }
-            }
-        });
+            });
 
-        initRootLayout();
-        showGoogleDocView();
+            initRootLayout();
+            showGoogleDocView();
+        } else {
+            Dialogs.showInfoDialog(new DialogText("Licence info", "Trial or license period expired", "You can visit our site:"), "www.google.com", "site", getHostServices());
+        }
     }
 
     public void initRootLayout() {
@@ -453,6 +452,43 @@ public class MainApp extends Application {
         }
     }
 
+    public boolean showLicenseActivateDialog() {
+        try {
+            // Загружаем fxml-файл и создаём новую сцену
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("/view/LicenseView.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Создаём диалоговое окно Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setResizable(false);
+            dialogStage.setTitle("License Activation");
+            dialogStage.getIcons().add(ImageResources.getAppIcon());
+
+            dialogStage.initStyle(StageStyle.UTILITY);
+
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Передаём таблицу в контроллер.
+            LicenseController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setHostServices(this.getHostServices());
+            //controller.setMainApp(this);
+
+            // Отображаем диалоговое окно и ждём, пока пользователь его не закроет
+            dialogStage.showAndWait();
+            return controller.isOkClicked();
+
+        } catch (IOException e) {
+            Dialogs.showErrorDialog(e, new DialogText("Form show error", "", "Can't open form 'Trial dialog'"), rootLogger);
+            return false;
+        }
+    }
+
+
     public void loadGoogleDocsFromFile(File file) {
 
         if (file != null) {
@@ -612,4 +648,16 @@ public class MainApp extends Application {
         }
     }
 
+    private boolean isLicenseValid() {
+        if (!Security.isLicenseActive(PropertiesHandler.getPropertyString(properties, PropertiesHandler.LICENSE_CODE))) {
+            if (Security.isTrialPeriod()) {
+                //Dialogs.showInfoDialog(new DialogText("Licence info", "Trial period expired", "You can visit our site:"), "www.google.com","site",  getHostServices());
+                showTrialDialog();
+                return true;
+            } else {
+                return showLicenseActivateDialog();
+            }
+        }
+        return true;
+    }
 }

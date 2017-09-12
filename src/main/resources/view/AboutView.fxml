@@ -23,7 +23,7 @@
             <bottom>
                 <AnchorPane BorderPane.alignment="CENTER">
                     <children>
-                        <Button fx:id="buttonOk" layoutX="90.0" layoutY="13.0" mnemonicParsing="false"
+                        <Button fx:id="buttonActivate" layoutX="90.0" layoutY="13.0" mnemonicParsing="false"
                                 onAction="#onButtonOk" prefHeight="25.0" prefWidth="70.0" text="Ok"
                                 AnchorPane.bottomAnchor="2.0" AnchorPane.topAnchor="2.0"/>
                     </children>

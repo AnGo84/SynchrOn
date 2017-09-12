@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -17,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="291.0" prefWidth="557.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.synchron.controller.SettingsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="291.0" prefWidth="557.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.synchron.controller.SettingsController">
     <children>
         <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <center>
@@ -140,9 +137,9 @@
                                     <children>
                                         <GridPane prefHeight="227.0" prefWidth="557.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                             <children>
-                                                <Label text="Login" />
+                                                <Label text="Login or email" />
                                                 <Label text="License code" GridPane.rowIndex="1" />
-                                                <TextField fx:id="textFLogin" editable="false" promptText="Login for license" GridPane.columnIndex="1" />
+                                                <TextField fx:id="textFLogin" promptText="Login or email for license" GridPane.columnIndex="1" />
                                                 <TextField fx:id="textFLicenseCode" promptText="License code" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
                                                 <Button fx:id="buttonCheckLicense" mnemonicParsing="false" onAction="#onButtonCheckLicense" prefHeight="25.0" prefWidth="80.0" text="Check" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -150,13 +147,21 @@
                                                         <Insets />
                                                     </GridPane.margin>
                                                 </Button>
+
+                                                <Label text="For getting license " GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <Hyperlink fx:id="hyperlinkSite" layoutX="127.0" layoutY="47.0" text="click here" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <padding>
+                                          <Insets left="100.0" />
+                                       </padding></Hyperlink>
                                             </children>
                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="85.0" />
                                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="30.0" />
+                                                <!--<ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity"-->
+                                                                   <!--minWidth="-Infinity" prefWidth="30.0"/>-->
                                             </columnConstraints>
                                             <rowConstraints>
+                                                <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                 <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                 <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                 <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />

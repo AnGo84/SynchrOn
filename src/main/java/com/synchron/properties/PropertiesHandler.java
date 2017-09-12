@@ -18,6 +18,7 @@ public class PropertiesHandler {
     public static final int DEFAULT_DELAY_AFTER_START = 60;
     public static final String REPEAT_PERIOD = "REPEAT_PERIOD";
     public static final int DEFAULT_REPEAT_PERIOD = 30;
+    public static final String LICENSE_CODE = "LICENSE_CODE";
 
 
     public static Properties getPropertiesFromFile(File file) throws IOException {

@@ -39,7 +39,11 @@ public class ImageResources {
 
     private static Image buttonSync = new Image(MainApp.class.getResourceAsStream("/images/button/sync_16.png"));
 
-    private static Image buttonTest = new Image(MainApp.class.getResourceAsStream("/images/button/antenna.png"));
+    private static Image buttonTest = new Image(MainApp.class.getResourceAsStream("/images/button/antenna_16.png"));
+
+    private static Image buttonActivate = new Image(MainApp.class.getResourceAsStream("/images/button/activate_16.png"));
+
+    private static Image buttonCheck = new Image(MainApp.class.getResourceAsStream("/images/button/check_16.png"));
 
     public static String getAppIconPath() {
         return appIconPath;
@@ -111,5 +115,13 @@ public class ImageResources {
 
     public static Image getButtonRefresh() {
         return buttonRefresh;
+    }
+
+    public static Image getButtonActivate() {
+        return buttonActivate;
+    }
+
+    public static Image getButtonCheck() {
+        return buttonCheck;
     }
 }
