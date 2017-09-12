@@ -16,6 +16,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,11 +25,11 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Properties;
 
-/**
- * Created by AnGo on 13.06.2017.
- */
+
 public class SettingsController {
     private static final String GOOGLE_APP_PROJECT_NAME = "Synchron";
+
+    private static final Logger logger = LogManager.getRootLogger();
 
     @FXML
     private Button buttonOk;
@@ -39,6 +41,8 @@ public class SettingsController {
     private Button buttonChooseJson;
     @FXML
     private Button buttonChooseXML;
+    @FXML
+    private Button buttonCheckLicense;
 
 
     @FXML
@@ -88,6 +92,7 @@ public class SettingsController {
         buttonChooseXML.setGraphic(new ImageView(ImageResources.getButtonFolder()));
 
         buttonTest.setGraphic(new ImageView(ImageResources.getButtonTest()));
+        buttonCheckLicense.setGraphic(new ImageView(ImageResources.getButtonCheck()));
     }
 
     private void initTextFieldFromPreferences() {
@@ -128,7 +133,7 @@ public class SettingsController {
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("JSON files (*.json)", "*.json");
         file = Dialogs.openFileDialog(file, extFilter, dialogStage);
         if (file != null) {
-            mainApp.getRootLogger().info("Open JSON file '" + file + "'");
+            logger.info("Open JSON file '" + file + "'");
             textFJsonFile.setText(file.getPath());
         }
     }
@@ -139,12 +144,12 @@ public class SettingsController {
         try {
             if (GoogleSheetIOHandler.getSheetsService(googleAPIProject) != null) {
                 //mainApp.setService(GoogleSheetIOHandler.getSheetsService(googleAPIProject));
-                Dialogs.showMessage(Alert.AlertType.INFORMATION, new DialogText("Connection Test", "The connection is successful", "Connection to: " + googleAPIProject.toString()), mainApp.getRootLogger());
+                Dialogs.showMessage(Alert.AlertType.INFORMATION, new DialogText("Connection Test", "The connection is successful", "Connection to: " + googleAPIProject.toString()), logger);
             } else {
-                Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Connection Test", "The connection is NULL", "Connection to: " + googleAPIProject.toString()), mainApp.getRootLogger());
+                Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Connection Test", "The connection is NULL", "Connection to: " + googleAPIProject.toString()), logger);
             }
         } catch (IOException e) {
-            Dialogs.showErrorDialog(e, new DialogText("Test error", "Cannot connect to Google DocSheet '" + googleAPIProject.toString() + "'", "The error is:"), mainApp.getRootLogger());
+            Dialogs.showErrorDialog(e, new DialogText("Test error", "Cannot connect to Google DocSheet '" + googleAPIProject.toString() + "'", "The error is:"), logger);
         }
     }
 
@@ -161,7 +166,7 @@ public class SettingsController {
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
         file = Dialogs.openFileDialog(file, extFilter, dialogStage);
         if (file != null) {
-            mainApp.getRootLogger().info("Open XML file '" + file + "'");
+            logger.info("Open XML file '" + file + "'");
             textFXMLFile.setText(file.getPath());
         }
 
@@ -192,16 +197,16 @@ public class SettingsController {
             try (OutputStream output = new FileOutputStream(mainApp.getPropertiesFile())) {
                 Properties properties = getPropertyFromField();
 
-                mainApp.getRootLogger().info("Save properties file " + mainApp.getPropertiesFile());
+                logger.info("Save properties file " + mainApp.getPropertiesFile());
 
                 // save properties to project root folder
                 properties.store(output, null);
                 mainApp.setProperties(properties);
-                mainApp.getRootLogger().info("\n" + PropertiesHandler.toString(properties));
-                mainApp.getRootLogger().info("Save properties file " + mainApp.getPropertiesFile());
+                logger.info("\n" + PropertiesHandler.toString(properties));
+                logger.info("Save properties file " + mainApp.getPropertiesFile());
                 dialogStage.close();
             } catch (IOException e) {
-                Dialogs.showErrorDialog(e, new DialogText("Saving error", "Cannot save config file '" + mainApp.getPropertiesFile() + "'", "The error is:"), mainApp.getRootLogger());
+                Dialogs.showErrorDialog(e, new DialogText("Saving error", "Cannot save config file '" + mainApp.getPropertiesFile() + "'", "The error is:"), logger);
             }
         }
     }
