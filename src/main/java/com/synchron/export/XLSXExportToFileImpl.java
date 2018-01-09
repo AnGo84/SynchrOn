@@ -12,8 +12,8 @@ import java.util.List;
 /**
  * Created by AnGo on 09.09.2017.
  */
-public class XLSExportToFileImpl implements ExportToFile {
-    private static final String FILE_TYPE = "XLS";
+public class XLSXExportToFileImpl implements ExportToFile {
+    private static final String FILE_TYPE = "XLSX";
 
     @Override
     public String getExportFileType() {
@@ -29,13 +29,14 @@ public class XLSExportToFileImpl implements ExportToFile {
     public void exportToFile(File file, ExportDataList exportData) throws IOException {
         List<ExportDataList> exportDataList = new ArrayList<>();
         exportDataList.add(exportData);
-        ExcelFileWriter.writeValuesToXLSFile(file, exportDataList);
+        ExcelFileWriter.writeValuesToXLSXFile(file, exportDataList);
     }
 
     @Override
     public void exportToFile(String fileWithoutType, Sheets service, String spreadSheetId, List<DocSheet> docSheetList) throws IOException {
         List<ExportDataList> exportDataList = ExcelFileWriter.getExportData(service, spreadSheetId, docSheetList);
         File file = new File(getExportFileName(fileWithoutType));
-        ExcelFileWriter.writeValuesToXLSFile(file, exportDataList);
+        ExcelFileWriter.writeValuesToXLSXFile(file, exportDataList);
     }
+
 }

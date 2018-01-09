@@ -153,7 +153,7 @@
                                                                         <Insets left="280.0" />
                                                                     </GridPane.margin>
                                                                 </Label>
-                                                                <TextField fx:id="textFNextSyncDate" editable="false" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                                <TextField fx:id="textFNextSyncDate" editable="false" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="145.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                                                     <GridPane.margin>
                                                                         <Insets left="310.0" />
                                                                     </GridPane.margin>
@@ -167,7 +167,7 @@
                                                                         <Insets left="460.0" />
                                                                     </GridPane.margin>
                                                                 </Label>
-                                                                <TextField fx:id="textFLastSyncDate" editable="false" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                                <TextField fx:id="textFLastSyncDate" editable="false" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="145.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                                                     <GridPane.margin>
                                                                         <Insets left="485.0" />
                                                                     </GridPane.margin>

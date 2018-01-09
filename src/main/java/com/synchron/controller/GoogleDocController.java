@@ -416,7 +416,7 @@ public class GoogleDocController {
             ExportHandler.exportGoogleDoc(mainApp.getService(), googleDoc, timerNowDate);
             //setTableEdited(true);
             mainApp.setHasChanged(true);
-            //mainApp.getSystemTray().showTrayMessage(mainApp.getAppName(), "Sync '" + googleDoc.getName() + "' success", TrayIcon.MessageType.INFO);
+            mainApp.getSystemTray().showTrayMessage(mainApp.getAppName(), "Sync '" + googleDoc.getName() + "' success", TrayIcon.MessageType.INFO);
             mainApp.getRootLogger().info("Sync " + mainApp.getCurrentGoogleDoc().toShortString() + " success");
 
         } catch (IOException | ArithmeticException | IllegalArgumentException e) {

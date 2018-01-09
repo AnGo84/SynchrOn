@@ -202,24 +202,10 @@ public class Dialogs {
     public static void showInfoDialog( DialogText dialogText, String link, String defaultLinkText, HostServices hostServices){
         Alert alert = getAlert(Alert.AlertType.WARNING, dialogText);
 
-
-        final WebView browser = new WebView();
-        final WebEngine webEngine = browser.getEngine();
-        //Optional<String> dialogResult = dialog.showAndWait();
-
-        Hyperlink hyperlink = new Hyperlink(defaultLinkText);
+        final Hyperlink hyperlink = new Hyperlink(defaultLinkText);
         hyperlink.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-//                webEngine.load(link);
-
-//                try {
-//                    Desktop.getDesktop().browse(new URI(link));
-//                } catch (IOException e1) {
-//                    //e1.printStackTrace();
-//                } catch (URISyntaxException e1) {
-//                    //e1.printStackTrace();
-//                }
                 hostServices.showDocument(link);
             }
 

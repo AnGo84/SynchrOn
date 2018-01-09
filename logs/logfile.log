@@ -1,5 +1,5 @@
-2017-09-12 14:22:46,978 INFO  [main] Start
-2017-09-12 14:22:47,352 INFO  [JavaFX Application Thread] Properties{
+2018-01-09 22:10:07,207 INFO  [main] Start
+2018-01-09 22:10:07,873 INFO  [JavaFX Application Thread] Properties{
 DELAY_AFTER_START : 30
 APP_XML_FILE : D:\tempJava\TempXLS.xml
 GOOGLE_PROJECT_NAME : Synchron
@@ -7,139 +7,69 @@ GOOGLE_PROJECT_JSON : P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json
 REPEAT_PERIOD : 30
 USER_NAME : 
 }
-2017-09-12 14:22:47,409 INFO  [JavaFX Application Thread] Expiry date: '01/09/2017'
-2017-09-12 14:22:47,441 INFO  [JavaFX Application Thread] Trial off: 'Sat Sep 16 00:00:00 EEST 2017'
-2017-09-12 14:23:00,425 INFO  [JavaFX Application Thread] Trial off: 'Sat Sep 16 00:00:00 EEST 2017'
-2017-09-12 14:23:01,359 INFO  [JavaFX Application Thread] Open file: 'D:\tempJava\TempXLS.xml'
-2017-09-12 14:23:04,085 INFO  [main] Close
-2017-09-12 14:23:18,428 INFO  [main] Start
-2017-09-12 14:23:18,668 INFO  [JavaFX Application Thread] Properties{
-DELAY_AFTER_START : 30
-APP_XML_FILE : D:\tempJava\TempXLS.xml
-GOOGLE_PROJECT_NAME : Synchron
-GOOGLE_PROJECT_JSON : P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json
-REPEAT_PERIOD : 30
-USER_NAME : 
-}
-2017-09-12 14:23:18,694 INFO  [JavaFX Application Thread] Expiry date: '01/09/2017'
-2017-09-12 14:23:18,721 INFO  [JavaFX Application Thread] Trial off: 'Sat Sep 16 00:00:00 EEST 2017'
-2017-09-12 14:23:26,576 INFO  [JavaFX Application Thread] Trial off: 'Sat Sep 16 00:00:00 EEST 2017'
-2017-09-12 14:23:26,869 INFO  [JavaFX Application Thread] Open file: 'D:\tempJava\TempXLS.xml'
-2017-09-12 14:23:28,805 INFO  [main] Close
-2017-09-12 14:23:41,920 INFO  [main] Start
-2017-09-12 14:23:42,176 INFO  [JavaFX Application Thread] Properties{
-DELAY_AFTER_START : 30
-APP_XML_FILE : D:\tempJava\TempXLS.xml
-GOOGLE_PROJECT_NAME : Synchron
-GOOGLE_PROJECT_JSON : P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json
-REPEAT_PERIOD : 30
-USER_NAME : 
-}
-2017-09-12 14:23:42,221 INFO  [JavaFX Application Thread] Expiry date: '01/09/2017'
-2017-09-12 14:23:42,245 INFO  [JavaFX Application Thread] Trial off: 'Sat Sep 16 00:00:00 EEST 2017'
-2017-09-12 14:24:31,098 INFO  [JavaFX Application Thread] Trial off: 'Sat Sep 16 00:00:00 EEST 2017'
-2017-09-12 14:24:31,384 INFO  [JavaFX Application Thread] Open file: 'D:\tempJava\TempXLS.xml'
-2017-09-12 14:24:33,167 INFO  [main] Close
-2017-09-12 21:28:44,721 INFO  [main] Start
-2017-09-12 21:28:45,013 INFO  [JavaFX Application Thread] Properties{
-DELAY_AFTER_START : 30
-APP_XML_FILE : D:\tempJava\TempXLS.xml
-GOOGLE_PROJECT_NAME : Synchron
-GOOGLE_PROJECT_JSON : P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json
-REPEAT_PERIOD : 30
-USER_NAME : 
-}
-2017-09-12 21:28:45,040 INFO  [JavaFX Application Thread] Expiry date: '01/09/2017'
-2017-09-12 21:28:45,069 INFO  [JavaFX Application Thread] Trial off: 'Sat Sep 16 00:00:00 EEST 2017'
-2017-09-12 21:28:50,097 INFO  [JavaFX Application Thread] Open file: 'D:\tempJava\TempXLS.xml'
-2017-09-12 21:28:53,278 INFO  [main] Close
-2017-09-12 21:29:25,925 INFO  [main] Start
-2017-09-12 21:29:26,176 INFO  [JavaFX Application Thread] Properties{
-DELAY_AFTER_START : 30
-APP_XML_FILE : D:\tempJava\TempXLS.xml
-GOOGLE_PROJECT_NAME : Synchron
-GOOGLE_PROJECT_JSON : P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json
-REPEAT_PERIOD : 30
-USER_NAME : 
-}
-2017-09-12 21:29:26,202 INFO  [JavaFX Application Thread] Expiry date: '01/09/2017'
-2017-09-12 21:29:37,253 INFO  [JavaFX Application Thread] Open file: 'D:\tempJava\TempXLS.xml'
-2017-09-12 21:29:40,934 INFO  [main] Close
-2017-09-12 21:29:47,650 INFO  [main] Start
-2017-09-12 21:29:47,886 INFO  [JavaFX Application Thread] Properties{
-DELAY_AFTER_START : 30
-APP_XML_FILE : D:\tempJava\TempXLS.xml
-GOOGLE_PROJECT_NAME : Synchron
-GOOGLE_PROJECT_JSON : P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json
-REPEAT_PERIOD : 30
-USER_NAME : 
-}
-2017-09-12 21:29:47,912 INFO  [JavaFX Application Thread] Expiry date: '01/09/2017'
-2017-09-12 21:29:54,109 INFO  [main] Close
-2017-09-12 21:31:08,845 INFO  [main] Start
-2017-09-12 21:31:09,083 INFO  [JavaFX Application Thread] Properties{
-DELAY_AFTER_START : 30
-APP_XML_FILE : D:\tempJava\TempXLS.xml
-GOOGLE_PROJECT_NAME : Synchron
-GOOGLE_PROJECT_JSON : P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json
-REPEAT_PERIOD : 30
-USER_NAME : 
-}
-2017-09-12 21:31:09,127 INFO  [JavaFX Application Thread] Expiry date: '01/09/2017'
-2017-09-12 21:31:09,157 INFO  [JavaFX Application Thread] Trial off: 'Sat Sep 16 00:00:00 EEST 2017'
-2017-09-12 21:31:12,990 INFO  [JavaFX Application Thread] Open file: 'D:\tempJava\TempXLS.xml'
-2017-09-12 21:31:25,117 INFO  [main] Close
-2017-09-12 21:31:49,897 INFO  [main] Start
-2017-09-12 21:31:50,161 INFO  [JavaFX Application Thread] Properties{
-DELAY_AFTER_START : 30
-APP_XML_FILE : D:\tempJava\TempXLS.xml
-GOOGLE_PROJECT_NAME : Synchron
-GOOGLE_PROJECT_JSON : P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json
-REPEAT_PERIOD : 30
-USER_NAME : 
-}
-2017-09-12 21:31:50,189 INFO  [JavaFX Application Thread] Expiry date: '01/09/2017'
-2017-09-12 21:31:50,208 INFO  [JavaFX Application Thread] Trial off: 'Sat Sep 16 00:00:00 EEST 2017'
-2017-09-12 21:31:52,145 INFO  [JavaFX Application Thread] Open file: 'D:\tempJava\TempXLS.xml'
-2017-09-12 21:32:12,931 INFO  [main] Close
-2017-09-12 21:37:23,719 INFO  [main] Start
-2017-09-12 21:37:23,961 INFO  [JavaFX Application Thread] Properties{
-DELAY_AFTER_START : 30
-APP_XML_FILE : D:\tempJava\TempXLS.xml
-GOOGLE_PROJECT_NAME : Synchron
-GOOGLE_PROJECT_JSON : P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json
-REPEAT_PERIOD : 30
-USER_NAME : 
-}
-2017-09-12 21:37:23,984 INFO  [JavaFX Application Thread] Expiry date: '01/09/2017'
-2017-09-12 21:37:24,010 INFO  [JavaFX Application Thread] Trial off: 'Sat Sep 16 00:00:00 EEST 2017'
-2017-09-12 21:37:25,918 INFO  [JavaFX Application Thread] Open file: 'D:\tempJava\TempXLS.xml'
-2017-09-12 21:37:40,732 INFO  [main] Close
-2017-09-12 21:37:45,941 INFO  [main] Start
-2017-09-12 21:37:46,191 INFO  [JavaFX Application Thread] Properties{
-DELAY_AFTER_START : 30
-APP_XML_FILE : D:\tempJava\TempXLS.xml
-GOOGLE_PROJECT_NAME : Synchron
-GOOGLE_PROJECT_JSON : P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json
-REPEAT_PERIOD : 30
-USER_NAME : 
-}
-2017-09-12 21:37:46,238 INFO  [JavaFX Application Thread] Expiry date: '01/09/2017'
-2017-09-12 21:37:46,301 INFO  [JavaFX Application Thread] Trial off: 'Sat Sep 16 00:00:00 EEST 2017'
-2017-09-12 21:37:50,214 INFO  [JavaFX Application Thread] Open file: 'D:\tempJava\TempXLS.xml'
-2017-09-12 21:38:20,255 INFO  [JavaFX Application Thread] Sync start Tue Sep 12 21:38:20 EEST 2017 :
-2017-09-12 21:38:20,256 INFO  [JavaFX Application Thread] Sync with: 
+2018-01-09 22:10:07,906 INFO  [JavaFX Application Thread] Expiry date: '01/09/2017'
+2018-01-09 22:10:21,110 INFO  [JavaFX Application Thread] Open file: 'D:\tempJava\TempXLS.xml'
+2018-01-09 22:10:51,131 INFO  [JavaFX Application Thread] Sync start Tue Jan 09 22:10:51 EET 2018 :
+2018-01-09 22:10:51,134 INFO  [JavaFX Application Thread] Sync with: 
 GoogleAPIProject{userName='', projectName='Synchron', pathToJson='P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json'}
-2017-09-12 21:38:23,501 INFO  [JavaFX Application Thread] Sync GoogleDoc{name=StringProperty [value: Employee], exportDir=StringProperty [value: D:\tempJava], status=StringProperty [value: On], exportType=StringProperty [value: CSV], period=IntegerProperty [value: 5], nextSyncDate=ObjectProperty [value: 2017-09-12T21:39], lastSyncDate=ObjectProperty [value: 2017-09-12T21:38:23.499], exportResult=StringProperty [value: SUCCESS], docId=StringProperty [value: 1QgSCimAbg90mW4YJqAhr1ms0CAT1wI3pZqHPoiBqUDQ]} success
-2017-09-12 21:38:23,501 INFO  [JavaFX Application Thread] Sync with: 
+2018-01-09 22:10:54,000 INFO  [JavaFX Application Thread] Sync GoogleDoc{name=StringProperty [value: Employee], exportDir=StringProperty [value: D:\tempJava], status=StringProperty [value: On], exportType=StringProperty [value: CSV], period=IntegerProperty [value: 5], nextSyncDate=ObjectProperty [value: 2018-01-09T21:14], lastSyncDate=ObjectProperty [value: 2018-01-09T22:10:53.997], exportResult=StringProperty [value: SUCCESS], docId=StringProperty [value: 1QgSCimAbg90mW4YJqAhr1ms0CAT1wI3pZqHPoiBqUDQ]} success
+2018-01-09 22:10:54,000 INFO  [JavaFX Application Thread] Sync with: 
 GoogleAPIProject{userName='', projectName='Synchron', pathToJson='P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json'}
-2017-09-12 21:38:24,023 ERROR  [JavaFX Application Thread] Error on  sync GoogleDoc{name=StringProperty [value: 3], exportDir=StringProperty [value: X:\], status=StringProperty [value: On], exportType=StringProperty [value: CSV], period=IntegerProperty [value: 2], nextSyncDate=ObjectProperty [value: 2017-09-12T21:42:08], lastSyncDate=ObjectProperty [value: 2017-09-12T21:38:24.023], exportResult=StringProperty [value: FAIL], docId=StringProperty [value: 1QgSCimAbg90mW4YJqAhr1ms0CAT1wI3pZqHPoiBqUDQ]} with message: java.io.FileNotFoundException: X:\3_Form Responses 1.csv (Системе не удается найти указанный путь)
-2017-09-12 21:39:20,216 INFO  [JavaFX Application Thread] Sync start Tue Sep 12 21:39:20 EEST 2017 :
-2017-09-12 21:39:20,217 INFO  [JavaFX Application Thread] Sync with: 
+2018-01-09 22:10:54,754 ERROR  [JavaFX Application Thread] Error on  sync GoogleDoc{name=StringProperty [value: 3], exportDir=StringProperty [value: X:\], status=StringProperty [value: On], exportType=StringProperty [value: XLSX], period=IntegerProperty [value: 2], nextSyncDate=ObjectProperty [value: 2018-01-09T22:12:08], lastSyncDate=ObjectProperty [value: 2018-01-09T22:10:54.753], exportResult=StringProperty [value: FAIL], docId=StringProperty [value: 1QgSCimAbg90mW4YJqAhr1ms0CAT1wI3pZqHPoiBqUDQ]} with message: java.io.FileNotFoundException: X:\3.xlsx (Системе не удается найти указанный путь)
+2018-01-09 22:11:21,113 INFO  [JavaFX Application Thread] Sync start Tue Jan 09 22:11:21 EET 2018 :
+2018-01-09 22:11:21,114 INFO  [JavaFX Application Thread] Sync with: 
 GoogleAPIProject{userName='', projectName='Synchron', pathToJson='P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json'}
-2017-09-12 21:39:23,250 INFO  [JavaFX Application Thread] Sync GoogleDoc{name=StringProperty [value: Employee], exportDir=StringProperty [value: D:\tempJava], status=StringProperty [value: On], exportType=StringProperty [value: CSV], period=IntegerProperty [value: 5], nextSyncDate=ObjectProperty [value: 2017-09-12T21:44], lastSyncDate=ObjectProperty [value: 2017-09-12T21:39:23.249], exportResult=StringProperty [value: SUCCESS], docId=StringProperty [value: 1QgSCimAbg90mW4YJqAhr1ms0CAT1wI3pZqHPoiBqUDQ]} success
-2017-09-12 21:39:23,253 INFO  [JavaFX Application Thread] Sync with: 
+2018-01-09 22:11:22,216 INFO  [JavaFX Application Thread] Sync GoogleDoc{name=StringProperty [value: Employee], exportDir=StringProperty [value: D:\tempJava], status=StringProperty [value: On], exportType=StringProperty [value: CSV], period=IntegerProperty [value: 5], nextSyncDate=ObjectProperty [value: 2018-01-09T22:14], lastSyncDate=ObjectProperty [value: 2018-01-09T22:11:22.214], exportResult=StringProperty [value: SUCCESS], docId=StringProperty [value: 1QgSCimAbg90mW4YJqAhr1ms0CAT1wI3pZqHPoiBqUDQ]} success
+2018-01-09 22:11:34,711 INFO  [JavaFX Application Thread] Sync with: 
 GoogleAPIProject{userName='', projectName='Synchron', pathToJson='P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json'}
-2017-09-12 21:39:23,824 WARN  [JavaFX Application Thread] DialogText{titleText='Initialization error', headerText='Cannot read Google API', contentText='java.io.FileNotFoundException: X:\3_Form Responses 1.csv (Системе не удается найти указанный путь)'}
-2017-09-12 21:39:28,673 ERROR  [JavaFX Application Thread] Error on  sync GoogleDoc{name=StringProperty [value: 3], exportDir=StringProperty [value: X:\], status=StringProperty [value: On], exportType=StringProperty [value: CSV], period=IntegerProperty [value: 2], nextSyncDate=ObjectProperty [value: 2017-09-12T21:42:08], lastSyncDate=ObjectProperty [value: 2017-09-12T21:39:23.792], exportResult=StringProperty [value: FAIL], docId=StringProperty [value: 1QgSCimAbg90mW4YJqAhr1ms0CAT1wI3pZqHPoiBqUDQ]} with message: java.io.FileNotFoundException: X:\3_Form Responses 1.csv (Системе не удается найти указанный путь)
-2017-09-12 21:39:38,771 INFO  [main] Close
+2018-01-09 22:11:36,094 INFO  [JavaFX Application Thread] Sync GoogleDoc{name=StringProperty [value: Google test], exportDir=StringProperty [value: D:\], status=StringProperty [value: On], exportType=StringProperty [value: XLSX], period=IntegerProperty [value: 1], nextSyncDate=ObjectProperty [value: 2018-01-09T22:13:28], lastSyncDate=ObjectProperty [value: 2018-01-09T22:11:36.094], exportResult=StringProperty [value: SUCCESS], docId=StringProperty [value: 1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms]} success
+2018-01-09 22:13:41,946 INFO  [main] Close
+2018-01-09 22:26:16,838 INFO  [main] Start
+2018-01-09 22:26:17,303 INFO  [JavaFX Application Thread] Properties{
+DELAY_AFTER_START : 30
+APP_XML_FILE : D:\tempJava\TempXLS.xml
+GOOGLE_PROJECT_NAME : Synchron
+GOOGLE_PROJECT_JSON : P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json
+REPEAT_PERIOD : 30
+USER_NAME : 
+}
+2018-01-09 22:26:17,331 INFO  [JavaFX Application Thread] Expiry date: '01/09/2017'
+2018-01-09 22:26:20,999 INFO  [main] Close
+2018-01-09 22:26:27,209 INFO  [main] Start
+2018-01-09 22:26:27,470 INFO  [JavaFX Application Thread] Properties{
+DELAY_AFTER_START : 30
+APP_XML_FILE : D:\tempJava\TempXLS.xml
+GOOGLE_PROJECT_NAME : Synchron
+GOOGLE_PROJECT_JSON : P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json
+REPEAT_PERIOD : 30
+USER_NAME : 
+}
+2018-01-09 22:26:27,502 INFO  [JavaFX Application Thread] Expiry date: '01/09/2017'
+2018-01-09 22:26:30,670 INFO  [JavaFX Application Thread] Open file: 'D:\tempJava\TempXLS.xml'
+2018-01-09 22:27:00,678 INFO  [JavaFX Application Thread] Sync start Tue Jan 09 22:27:00 EET 2018 :
+2018-01-09 22:27:00,679 INFO  [JavaFX Application Thread] Sync with: 
+GoogleAPIProject{userName='', projectName='Synchron', pathToJson='P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json'}
+2018-01-09 22:27:02,661 INFO  [JavaFX Application Thread] Sync GoogleDoc{name=StringProperty [value: Employee], exportDir=StringProperty [value: D:\tempJava], status=StringProperty [value: On], exportType=StringProperty [value: CSV], period=IntegerProperty [value: 5], nextSyncDate=ObjectProperty [value: 2018-01-09T21:29], lastSyncDate=ObjectProperty [value: 2018-01-09T22:27:02.659], exportResult=StringProperty [value: SUCCESS], docId=StringProperty [value: 1QgSCimAbg90mW4YJqAhr1ms0CAT1wI3pZqHPoiBqUDQ]} success
+2018-01-09 22:27:02,662 INFO  [JavaFX Application Thread] Sync with: 
+GoogleAPIProject{userName='', projectName='Synchron', pathToJson='P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json'}
+2018-01-09 22:27:03,011 ERROR  [JavaFX Application Thread] Error on  sync GoogleDoc{name=StringProperty [value: 3], exportDir=StringProperty [value: X:\], status=StringProperty [value: On], exportType=StringProperty [value: CSV], period=IntegerProperty [value: 2], nextSyncDate=ObjectProperty [value: 2018-01-09T22:28:08], lastSyncDate=ObjectProperty [value: 2018-01-09T22:27:03.010], exportResult=StringProperty [value: FAIL], docId=StringProperty [value: 1QgSCimAbg90mW4YJqAhr1ms0CAT1wI3pZqHPoiBqUDQ]} with message: java.io.FileNotFoundException: X:\3_Form Responses 1.csv (Системе не удается найти указанный путь)
+2018-01-09 22:27:05,887 INFO  [main] Close
+2018-01-09 22:42:45,779 INFO  [main] Start
+2018-01-09 22:42:46,112 INFO  [JavaFX Application Thread] Properties{
+DELAY_AFTER_START : 30
+APP_XML_FILE : D:\tempJava\TempXLS.xml
+GOOGLE_PROJECT_NAME : Synchron
+GOOGLE_PROJECT_JSON : P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json
+REPEAT_PERIOD : 30
+USER_NAME : 
+}
+2018-01-09 22:42:46,171 INFO  [JavaFX Application Thread] Expiry date: '01/09/2017'
+2018-01-09 22:42:51,523 INFO  [JavaFX Application Thread] Open file: 'D:\tempJava\TempXLS.xml'
+2018-01-09 22:43:11,683 INFO  [JavaFX Application Thread] Sync with: 
+GoogleAPIProject{userName='', projectName='Synchron', pathToJson='P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json'}
+2018-01-09 22:43:14,452 INFO  [JavaFX Application Thread] Sync GoogleDoc{name=StringProperty [value: Google test], exportDir=StringProperty [value: D:\], status=StringProperty [value: On], exportType=StringProperty [value: XLSX], period=IntegerProperty [value: 1], nextSyncDate=ObjectProperty [value: 2018-01-09T22:45:02], lastSyncDate=ObjectProperty [value: 2018-01-09T22:43:14.450], exportResult=StringProperty [value: SUCCESS], docId=StringProperty [value: 1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms]} success
+2018-01-09 22:43:21,552 INFO  [JavaFX Application Thread] Sync start Tue Jan 09 22:43:21 EET 2018 :
+2018-01-09 22:43:21,553 INFO  [JavaFX Application Thread] Sync with: 
+GoogleAPIProject{userName='', projectName='Synchron', pathToJson='P:\Java\FX\SynchrOn\target\jfx\app\client_secret.json'}
+2018-01-09 22:43:22,362 INFO  [JavaFX Application Thread] Sync GoogleDoc{name=StringProperty [value: Employee], exportDir=StringProperty [value: D:\tempJava], status=StringProperty [value: On], exportType=StringProperty [value: CSV], period=IntegerProperty [value: 5], nextSyncDate=ObjectProperty [value: 2018-01-09T21:44], lastSyncDate=ObjectProperty [value: 2018-01-09T22:43:22.361], exportResult=StringProperty [value: SUCCESS], docId=StringProperty [value: 1QgSCimAbg90mW4YJqAhr1ms0CAT1wI3pZqHPoiBqUDQ]} success
+2018-01-09 22:43:30,320 INFO  [main] Close

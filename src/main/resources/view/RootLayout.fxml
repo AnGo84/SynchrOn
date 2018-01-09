@@ -53,6 +53,7 @@
                     <items>
                         <MenuItem fx:id="menuItemExportToCSV" mnemonicParsing="false" onAction="#onMenuItemExportToCSV" text="to CSV" />
                         <MenuItem fx:id="menuItemExportToXLS" mnemonicParsing="false" onAction="#onMenuItemExportToXLS" text="to XLS" />
+                        <MenuItem fx:id="menuItemExportToXLSX" mnemonicParsing="false" onAction="#onMenuItemExportToXLSX" text="to XLSX" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Tools">

@@ -5,7 +5,8 @@ package com.synchron.export;
  */
 public enum ExportType {
     CSV("CSV", new CSVExportToFileImpl()),
-    XLS("XLS", new XLSExportToFileImpl());
+    XLS("XLS", new XLSExportToFileImpl()),
+    XLSX("XLSX", new XLSXExportToFileImpl());
 
     private String typeName;
     private ExportToFile exportToFile;

@@ -89,6 +89,10 @@ public class RootLayoutController {
         exportToFile(ExportType.XLS, new XLSExportToFileImpl());
     }
 
+    public void onMenuItemExportToXLSX(ActionEvent actionEvent) {
+        exportToFile(ExportType.XLSX, new XLSXExportToFileImpl());
+    }
+
     private void exportToFile(ExportType exportType, ExportToFile exportToFile) {
         if (mainApp.getCurrentGoogleDoc() != null && (mainApp.getCurrentGoogleDoc().hasSheets())) {
             String fileNameWithoutType = setExportFileName(mainApp.getCurrentGoogleDoc());

@@ -205,7 +205,6 @@ public class MainApp extends Application {
         //if (!Security.isEndTrial(new Date())) {
         if (isLicenseValid()) {
             this.primaryStage = primaryStage;
-
             //this.primaryStage.setTitle(APP_NAME);
 
             // instructs the javafx system not to exit implicitly when the last application window is shut.
@@ -213,7 +212,7 @@ public class MainApp extends Application {
 
             // sets up the tray icon (using awt code run on the swing thread).
             systemTray = new SystemTray(primaryStage, this);
-//        javax.swing.SwingUtilities.invokeLater(this:: systemTray.addAppToTray);
+
 
             javax.swing.SwingUtilities.invokeLater(
                     new Runnable() {
@@ -245,7 +244,7 @@ public class MainApp extends Application {
             initRootLayout();
             showGoogleDocView();
         } else {
-            Dialogs.showInfoDialog(new DialogText("Licence info", "Trial or license period expired", "You can visit our site:"), "www.google.com", "site", getHostServices());
+            Dialogs.showInfoDialog(new DialogText("Licence info", "Trial or license period expired", "You can visit our site:"), Security.LICENSE_LINK, "site", getHostServices());
         }
     }
 
