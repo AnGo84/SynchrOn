@@ -170,9 +170,9 @@ public class GoogleSheetIOHandler {
     }
 
     /**
-     * Create and return a list of GoogleDoc row's values considering model range.
+     * Create and return a list of GoogleDoc Row's values considering model range.
      *
-     * @return a list of row's values
+     * @return a list of Row's values
      * @throws IOException
      */
     public static List<List<Object>> getValuesList(Sheets service, SheetProperties sheetProperties) throws IOException {
@@ -282,7 +282,7 @@ public class GoogleSheetIOHandler {
             System.out.println("ID, Major");
             for (List row : values) {
                 // Print columns A and E, which correspond to indices 0 and 4.
-//                System.out.println(row.size());
+//                System.out.println(Row.size());
                 System.out.printf("%s, %s\n", row.get(0), row.get(4));
             }
         }

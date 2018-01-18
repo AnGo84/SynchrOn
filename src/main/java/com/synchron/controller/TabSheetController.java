@@ -115,7 +115,7 @@ public class TabSheetController {
                 tableColumn.setText("Field " + (colNo + 1));
 
 
-                // Add cell value factories
+                // Add Cell value factories
 //                tableColumn.setCellValueFactory((p) -> {
 //                    String[] x = p.getValue();
 //                    return new SimpleStringProperty(x != null && x.length > 0 ? x[0] : "<no name>");
@@ -168,6 +168,14 @@ public class TabSheetController {
         exportToFile(new XLSExportToFileImpl());
     }
 
+    public void onMenuItemExportToXLSX(ActionEvent actionEvent) {
+        exportToFile(new XLSXExportToFileImpl());
+    }
+
+    public void onMenuItemExportToXML(ActionEvent actionEvent) {exportToFile(new XMLExportToFileImpl());
+    }
+    public void onMenuItemExportToJSON(ActionEvent actionEvent) {exportToFile(new JSONExportToFileImpl());
+    }
     private void exportToFile(ExportToFile exportToFile) {
         if (googleDoc != null && docSheet != null) {
             FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(exportToFile.getExportFileType().toUpperCase() + " files (*." + exportToFile.getExportFileType().toLowerCase() + ")", "*." + exportToFile.getExportFileType().toLowerCase());

@@ -54,6 +54,8 @@
                         <MenuItem fx:id="menuItemExportToCSV" mnemonicParsing="false" onAction="#onMenuItemExportToCSV" text="to CSV" />
                         <MenuItem fx:id="menuItemExportToXLS" mnemonicParsing="false" onAction="#onMenuItemExportToXLS" text="to XLS" />
                         <MenuItem fx:id="menuItemExportToXLSX" mnemonicParsing="false" onAction="#onMenuItemExportToXLSX" text="to XLSX" />
+                        <MenuItem fx:id="menuItemExportToXML" mnemonicParsing="false" onAction="#onMenuItemExportToXML" text="to XML" />
+                        <MenuItem fx:id="menuItemExportToJSON" mnemonicParsing="false" onAction="#onMenuItemExportToJSON" text="to JSON" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Tools">

@@ -2,10 +2,16 @@ package com.synchron.export;
 
 import com.google.api.services.sheets.v4.Sheets;
 import com.synchron.custom.FileUtils;
+import com.synchron.model.Entry;
 import com.synchron.model.GoogleDoc;
+import com.synchron.model.sheet.Cell;
+import com.synchron.model.sheet.Row;
+import com.synchron.model.sheet.Sheet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by AnGo on 20.06.2017.
@@ -81,4 +87,54 @@ public class ExportHandler {
         }
         return null;
     }
+
+    public static List<Entry> getEntryList(ExportDataList exportData) {
+
+        List<Entry> entryList = new ArrayList();
+        if (exportData==null){
+            return entryList;
+        }
+        int entryCount = 0;
+        for (String[] strings: exportData.getDataList()) {
+            if (strings != null && strings.length > 0) {
+
+                for (int i = 0; i < strings.length; i++) {
+                    Entry entry = new Entry();
+                    entry.setText(strings[i]);
+                    entry.setId(++entryCount);
+                    entryList.add(entry);
+                }
+            }
+        }
+        return entryList;
+    }
+
+    public static Sheet getSheet(ExportDataList exportData) {
+        Sheet sheet = new Sheet(new ArrayList());
+
+        if (exportData==null){
+            return sheet;
+        }
+        int rowCount = 0;
+        for (String[] strings: exportData.getDataList()) {
+            if (strings != null && strings.length > 0) {
+                int cellCount = 0;
+                Row row = new Row(++rowCount,new ArrayList<>());
+
+                for (int i = 0; i < strings.length; i++) {
+                    Cell cell  = new Cell();
+                    cell.setCellNom(++cellCount);
+                    cell.setText(strings[i]);
+
+                    row.getCells().add(cell);
+
+                }
+                sheet.getRows().add(row);
+            }
+        }
+        return sheet;
+    }
+
 }
+
+

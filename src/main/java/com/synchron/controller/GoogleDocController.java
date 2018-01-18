@@ -150,7 +150,7 @@ public class GoogleDocController {
                 (observable, oldValue, newValue) -> showGoogleDocDetails(newValue));
 
 
-        // Custom rendering of the table cell.
+        // Custom rendering of the table Cell.
         columnNextSyncDate.setCellFactory(getTableCellDateCallback());
         columnLastSyncDate.setCellFactory(getTableCellDateCallback());
 
@@ -357,7 +357,7 @@ public class GoogleDocController {
             if (docSheet != null) {
                 mainApp.showTabSheetDialog(docSheet);
             } else {
-                Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Data error", "No row selected!", "For view, please, select row"), mainApp.getRootLogger());
+                Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Data error", "No Row selected!", "For view, please, select Row"), mainApp.getRootLogger());
             }
         } else {
             Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Data error", "Nothing to open!", "Table is empty"), mainApp.getRootLogger());
@@ -421,8 +421,8 @@ public class GoogleDocController {
 
         } catch (IOException | ArithmeticException | IllegalArgumentException e) {
             googleDoc.setExportResults(new Date(), ExportResult.FAIL);
-            //Dialogs.showErrorDialog(e, new DialogText("Export error", "Can't export " + googleDoc.getName(), "The error is: "), mainApp.getRootLogger());
-            Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Initialization error", "Cannot read Google API", e.getMessage()), mainApp.getRootLogger());
+            Dialogs.showErrorDialog(e, new DialogText("Export error", "Can't export " + googleDoc.getName(), "The error is: "), mainApp.getRootLogger());
+            //Dialogs.showMessage(Alert.AlertType.WARNING, new DialogText("Initialization error", "Cannot read Google API", e.getMessage()), mainApp.getRootLogger());
             //mainApp.getSystemTray().showTrayMessage(mainApp.getAppName(), "Sync '" + googleDoc.getName() + "' error", TrayIcon.MessageType.ERROR);
             mainApp.getRootLogger().error("Error on  sync " + googleDoc.toShortString() + " with message: " + e.getMessage());
         }
