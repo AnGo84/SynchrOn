@@ -8,8 +8,10 @@ import com.synchron.export.ExportResult;
 import com.synchron.fx.DialogText;
 import com.synchron.fx.Dialogs;
 import com.synchron.fx.ImageResources;
+import com.synchron.google.GoogleSheetIOHandler;
 import com.synchron.model.DocSheet;
 import com.synchron.model.GoogleDoc;
+import javafx.application.HostServices;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -125,7 +127,12 @@ public class GoogleDocController {
     @FXML
     private Button buttonRefresh;
 
+    @FXML
+    private Hyperlink hyperLinkToGoogleSheet;
+
     private MainApp mainApp;
+
+    private HostServices hostServices;
 
     private ObservableList<DocSheet> docSheetObservableList = FXCollections.observableArrayList();
 
@@ -134,6 +141,14 @@ public class GoogleDocController {
 
     public GoogleDocController(MainApp mainApp) {
         this.mainApp = mainApp;
+    }
+
+    public HostServices getHostServices() {
+        return hostServices;
+    }
+
+    public void setHostServices(HostServices hostServices) {
+        this.hostServices = hostServices;
     }
 
     @FXML
@@ -165,6 +180,20 @@ public class GoogleDocController {
         });
 
         initButtonsToolTip();
+
+        hyperLinkToGoogleSheet.setVisited(false);
+
+        hyperLinkToGoogleSheet.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (textFID != null && !textFID.getText().equals("")) {
+                    String fullLink = GoogleSheetIOHandler.LINK_START_WITH + textFID.getText();
+                    hostServices.showDocument(fullLink);
+                    hyperLinkToGoogleSheet.setVisited(false);
+                }
+            }
+        });
+
     }
 
     private Callback<TableColumn<GoogleDoc, LocalDateTime>, TableCell<GoogleDoc, LocalDateTime>> getTableCellDateCallback() {
@@ -305,7 +334,10 @@ public class GoogleDocController {
             textFExportResult.setText("");
 
             docSheetObservableList = FXCollections.observableArrayList();
+
         }
+
+        hyperLinkToGoogleSheet.setVisible(!textFID.getText().equals(""));
 
         if (mainApp != null) {
             mainApp.setCurrentGoogleDoc(googleDoc);

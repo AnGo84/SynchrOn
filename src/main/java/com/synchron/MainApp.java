@@ -308,6 +308,8 @@ public class MainApp extends Application {
 
             GoogleDocController controller = loader.getController();
             controller.setMainApp(this);
+            controller.setHostServices(this.getHostServices());
+
         } catch (IOException e) {
             Dialogs.showErrorDialog(e, new DialogText("Form show error", "", "Can't open DocView form"), rootLogger);
         }

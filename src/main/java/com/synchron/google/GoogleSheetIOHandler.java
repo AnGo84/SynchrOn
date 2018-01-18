@@ -49,6 +49,7 @@ public class GoogleSheetIOHandler {
     // RAW, USER_ENTERED, INPUT_VALUE_OPTIONS_UNSPECIFIED
     private static final String VALUE_INPUT_OPTION = "USER_ENTERED";
     private static final String ACCESS_TYPE = "offline";
+    public static final String LINK_START_WITH = "https://docs.google.com/spreadsheets/d/";
 
     /**
      * Directory to store user credentials for this application.
