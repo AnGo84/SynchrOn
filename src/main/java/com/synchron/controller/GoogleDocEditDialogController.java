@@ -135,7 +135,6 @@ public class GoogleDocEditDialogController {
         initFactories();
 
         comboBoxExportType.getItems().setAll(ExportType.values());
-
     }
 
     private void initButtonsIcons() {
